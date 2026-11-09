@@ -52,7 +52,7 @@
 <div class="actions"><button type="button" data-action="googleNativeLogin">Tiếp tục với Gmail đang đăng nhập</button></div>
 <small id="googleLoginHint">Nếu Google không xác định được Gmail trong Apps Script, hãy dùng nút Đăng nhập với Google ở trên.</small><div id="autoLoginNote" class="notice warning hidden" style="margin-top:12px"></div></div>
 <p id="loginNote" class="subtle" style="margin:18px 0 0"></p></div></section>
-<div id="shell" class="shell hidden"><aside class="sidebar"><div class="brand-kicker">Trung tâm cung ứng dịch vụ công</div><h2>VỊ TRÍ<br>VIỆC LÀM</h2><small style="color:#9bb7d4">Phường An Hội Đông</small><nav id="nav"></nav><div class="foot">Mỗi cá nhân tự kê khai.<br>Dữ liệu bổ sung ghi trực tiếp vào sheet vận hành.<br><br>Giờ hiển thị: Việt Nam (UTC+7)</div></aside><main><header class="topbar"><strong>TRUNG TÂM CUNG ỨNG DỊCH VỤ CÔNG<br>PHƯỜNG AN HỘI ĐÔNG</strong><div class="user-box"><span class="avatar" id="avatar">VT</span><div><b id="userName" style="font-size:13px"></b><br><small id="userRole"></small></div><button data-action="changePassword" title="Đổi mật khẩu">Mật khẩu</button><button data-action="logout" title="Đăng xuất">Thoát</button></div></header><div class="mobile-nav"><select id="mobileNav" aria-label="Chức năng"></select></div><div id="previewBanner"></div><div id="page" class="content"></div></main></div>
+<div id="shell" class="shell hidden"><aside class="sidebar"><div class="brand-kicker">Trung tâm cung ứng dịch vụ công</div><h2>VỊ TRÍ<br>VIỆC LÀM</h2><small style="color:#9bb7d4">Phường An Hội Đông</small><nav id="nav"></nav><div class="foot">Mỗi cá nhân tự kê khai.<br>Dữ liệu bổ sung ghi trực tiếp vào sheet vận hành.<br><br>Giờ hiển thị: Việt Nam (UTC+7)</div></aside><main><header class="topbar"><strong>TRUNG TÂM CUNG ỨNG DỊCH VỤ CÔNG<br>PHƯỜNG AN HỘI ĐÔNG</strong><div class="user-box"><span class="avatar" id="avatar">VT</span><div><b id="userName" style="font-size:13px"></b><br><small id="userRole"></small></div><button data-action="pickMyPositions" id="pickMyPosBtn" class="hidden" title="Chọn / đổi vị trí việc làm">Vị trí việc làm</button><button data-action="changePassword" title="Đổi mật khẩu">Mật khẩu</button><button data-action="logout" title="Đăng xuất">Thoát</button></div></header><div class="mobile-nav"><select id="mobileNav" aria-label="Chức năng"></select></div><div id="previewBanner"></div><div id="page" class="content"></div></main></div>
 <dialog id="dialog"><div class="modal-head"><h2 id="modalTitle"></h2><button data-action="close" aria-label="Đóng">×</button></div><div id="modalBody" class="modal-body"></div><div id="modalFooter" class="modal-footer"></div></dialog><div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
 <script>window.VTVL_API="https://script.google.com/macros/s/AKfycbxxvW8tlSiYw-mph9-9qdkbU0f71hTceuNic-mzWkvnSCOkIxruYHxz8jZBvtYo15Zg/exec";</script>
 <script>
@@ -109,6 +109,7 @@ function canNav(id){
 function renderShell(){
   $('login').classList.add('hidden');$('shell').classList.remove('hidden');
   document.querySelectorAll('[data-action=changePassword]').forEach(function(b){b.classList.toggle('hidden',has('ADMIN'));});
+  if($('pickMyPosBtn'))$('pickMyPosBtn').classList.toggle('hidden',!(S.model.user.selfSelect&&(S.model.myCatalog||[]).length));
   var u=S.model.user;$('userName').textContent=u.name;$('avatar').textContent=u.name.slice(0,2).toUpperCase();$('userRole').textContent=u.roles.map(function(r){return roleNames[r];}).join(' · ');
   $('nav').innerHTML=navs.filter(function(x){return canNav(x[0]);}).map(function(x){return '<button data-nav="'+x[0]+'" class="'+(S.page===x[0]?'active':'')+'">'+e(!staff()&&x[0]==='forms'?'Đề nghị của tôi':x[0]==='lookup'?'Nhiệm vụ chính & công việc':x[1])+'</button>';}).join('');
   $('mobileNav').innerHTML=navs.filter(function(x){return canNav(x[0]);}).map(function(x){return '<option value="'+x[0]+'" '+(S.page===x[0]?'selected':'')+'>'+e(!staff()&&x[0]==='forms'?'Đề nghị của tôi':x[0]==='lookup'?'Nhiệm vụ chính & công việc':x[1])+'</option>';}).join('');
@@ -231,6 +232,21 @@ function deputyPanel_(){
   }else if(!dp.chosen.length)h+='<p class="subtle">Chưa chọn lĩnh vực: đang hiện toàn bộ công việc của vị trí Phó Giám đốc.</p>';
   return h;
 }
+/** Khung tự chọn VTVL (hiện ngay sau đăng nhập nếu tài khoản chưa có VTVL). */
+function myPositionsCard_(first){
+  var cat=S.model.myCatalog||[],own=S.model.user.positions||[];
+  return '<div class="card" id="myPosCard"><h2 style="margin-top:0">'+(first?'Chọn vị trí việc làm của bạn':'Đổi vị trí việc làm')+'</h2>'+
+    '<p class="subtle">Tích vị trí việc làm bạn đảm nhận (có thể chọn thêm vị trí kiêm nhiệm), chọn vị trí chính rồi bấm Lưu. App sẽ hiện nhiệm vụ và công việc của các vị trí này.</p>'+
+    '<input id="myPosSearch" placeholder="Tìm nhanh theo tên vị trí…" style="margin-bottom:10px">'+
+    '<div class="position-checklist" id="myPosList">'+cat.map(function(c){return '<label class="check" data-name="'+e(c.name.toLowerCase())+'"><input type="checkbox" name="myPos" value="'+e(c.id)+'" '+(own.includes(c.id)?'checked':'')+'>'+e(c.name)+'</label>';}).join('')+'</div>'+
+    '<label for="myPrimary">Vị trí chính</label><select id="myPrimary"></select>'+
+    '<div class="actions">'+btn('saveMyPositions','Lưu vị trí việc làm','','primary')+'</div></div>';
+}
+function refreshMyPrimary_(){
+  var sel=$('myPrimary');if(!sel)return;var cur=sel.value||S.model.user.primary;
+  var picked=Array.from(document.querySelectorAll('input[name="myPos"]:checked')).map(function(x){return x.value;});
+  sel.innerHTML=picked.length?picked.map(function(id){var c=(S.model.myCatalog||[]).find(function(x){return x.id===id;});return '<option value="'+e(id)+'" '+(id===cur?'selected':'')+'>'+e(c?c.name:id)+'</option>';}).join(''):'<option value="">Chưa chọn vị trí</option>';
+}
 function lookup(){
   var d=S.model.data,f=S.filters,scope=scope_(),selects='';
   if(has('ADMIN')){
@@ -250,10 +266,11 @@ function lookup(){
   if(selects)body+='<div class="card"><div class="scope-bar">'+selects+'</div></div>';
   if(has('ADMIN')&&!S.model.lastSync)body+='<div class="notice warning">Chưa đồng bộ dữ liệu nên tài khoản con chưa thấy nhiệm vụ và công việc. Vào <b>Quản trị hệ thống → Đồng bộ dữ liệu</b> để đồng bộ lần đầu.</div>';
   if(!staff()&&!d.A1.length)body+='<div class="notice warning">Dữ liệu nhiệm vụ chưa được quản trị viên đồng bộ. Vui lòng liên hệ quản trị viên.</div>';
-  else if(!staff()&&!scope.allowed.length)body+='<div class="notice warning">Tài khoản chưa được phân công vị trí việc làm. Vui lòng liên hệ quản trị viên.</div>';
+  else if(!staff()&&!scope.allowed.length)body+=(S.model.user.selfSelect&&(S.model.myCatalog||[]).length?myPositionsCard_(true):'<div class="notice warning">Tài khoản chưa được phân công vị trí việc làm. Vui lòng liên hệ quản trị viên.</div>');
   if(S.model.deputy&&!scope.sub)body+=deputyPanel_();
   body+='<div id="taskFlow"></div>';
   $('page').innerHTML=body;
+  refreshMyPrimary_();
   renderTaskFlow_();
 }
 function fieldMap_(){
@@ -531,7 +548,7 @@ function admin(){
     '<div class="two"><div class="card"><h2>Đồng bộ dữ liệu</h2><p class="subtle">Nguồn → dữ liệu vận hành. Các bản kê khai và nội dung được duyệt được giữ riêng.</p><div class="metric-line"><span>Lần gần nhất</span><b>'+e(m.lastSync||'Chưa đồng bộ')+'</b></div><div class="actions">'+btn('syncPreview','Kiểm tra & đồng bộ','','primary')+'</div><div id="syncPlan"></div></div>'+
     '<div class="card"><h2>Sao lưu & khôi phục</h2><p class="subtle">Khôi phục tạo bản vận hành mới. File nguồn và bản vận hành trước đó được giữ lại.</p>'+btn('backup','Tạo bản sao lưu')+'<label>Bản sao lưu</label><select id="backupChoice">'+options(m.backups.slice().reverse().map(function(x){return {id:x.id,name:x.at+' · '+x.id.slice(0,8)};}),'','id','name','Chọn bản sao lưu')+'</select><div class="actions">'+btn('confirmRestore','Khôi phục bản đã chọn','','danger')+'</div></div></div>'+
     '<div class="card"><div class="notice"><b>Kiểm tra dữ liệu công việc:</b> công việc mới/chỉnh sửa tự ghi vào <code>APP_CONG_VIEC</code>. '+(m.appDataUrl?'<a target="_blank" rel="noopener" href="'+e(m.appDataUrl)+'">Mở Google Sheets vận hành</a>':'')+' Không cần duyệt; quản trị kiểm tra trực tiếp trên sheet.</div></div>'+
-    '<div class="card"><div class="row"><h2>Tài khoản & phân công</h2><small>Danh mục C1: '+positionCatalog_().length+' VTVL</small></div>'+(m.positionCatalogError?'<div class="notice warning">Không đọc được danh mục VTVL: '+e(m.positionCatalogError)+'</div>':'')+'<div class="actions">'+btn('newAccount','+ Tạo tài khoản','','primary')+btn('importAccounts','⇪ Nhập danh sách tài khoản (Excel)')+btn('refreshPositions','↻ Tải lại danh sách VTVL')+'</div>'+table(['Tài khoản','Vai trò','Vị trí chính / kiêm nhiệm','Trạng thái',''],m.accounts.map(function(u){return ['<b>'+e(u.name)+'</b><br><small>'+e(u.id)+'</small>',u.roles.map(function(x){return e(roleNames[x]);}).join('<br>'),(u.positions.length?u.positions.map(function(x){return '<small>'+e(catName_(x))+(x===u.primary?' · Chính':' · Kiêm nhiệm')+'</small>';}).join('<br>'):'<small style="color:var(--red)">Chưa phân công VTVL</small>')+((u.fields||[]).length?'<br><small>Lĩnh vực: '+e(u.fields.join(', '))+'</small>':''),pill(u.active?'Hoạt động':'Đã khóa'),btn('editAccount','Sửa','data-id="'+e(u.id)+'"')+(u.roles.includes('ADMIN')?'':' '+btn('resetAccount','Đổi mật khẩu','data-id="'+e(u.id)+'"')+' '+btn('deleteAccount','Xóa','data-id="'+e(u.id)+'"','danger'))];}))+'</div>'+
+    '<div class="card"><div class="row"><h2>Tài khoản & phân công</h2><small>Danh mục C1: '+positionCatalog_().length+' VTVL</small></div>'+(m.positionCatalogError?'<div class="notice warning">Không đọc được danh mục VTVL: '+e(m.positionCatalogError)+'</div>':'')+'<div class="actions">'+btn('newAccount','+ Tạo tài khoản','','primary')+btn('importAccounts','⇪ Nhập danh sách tài khoản (Excel)')+btn('refreshPositions','↻ Tải lại danh sách VTVL')+'</div>'+table(['Tài khoản','Vai trò','Vị trí chính / kiêm nhiệm','Trạng thái',''],m.accounts.map(function(u){return ['<b>'+e(u.name)+'</b><br><small>'+e(u.id)+'</small>',u.roles.map(function(x){return e(roleNames[x]);}).join('<br>'),(u.positions.length?u.positions.map(function(x){return '<small>'+e(catName_(x))+(x===u.primary?' · Chính':' · Kiêm nhiệm')+'</small>';}).join('<br>'):'<small style="color:var(--red)">Chưa có VTVL</small>')+(u.selfSelect?'<br><span class="tag amber">Tự chọn VTVL</span>':'')+((u.fields||[]).length?'<br><small>Lĩnh vực: '+e(u.fields.join(', '))+'</small>':''),pill(u.active?'Hoạt động':'Đã khóa'),btn('editAccount','Sửa','data-id="'+e(u.id)+'"')+(u.roles.includes('ADMIN')?'':' '+btn('resetAccount','Đổi mật khẩu','data-id="'+e(u.id)+'"')+' '+btn('deleteAccount','Xóa','data-id="'+e(u.id)+'"','danger'))];}))+'</div>'+
     '<div class="two"><div class="card"><h2>Khóa dữ liệu theo kỳ</h2><label>Kỳ dữ liệu</label><input id="periodToLock" value="'+e(S.report.periods[0]||new Date().getFullYear())+'"><label>Lý do</label><input id="periodLockReason"><div class="actions">'+btn('lockPeriod','Khóa kỳ')+btn('unlockPeriod','Mở lại kỳ')+'</div>'+m.periodLocks.map(function(x){return '<div class="metric-line"><span>'+e(x.period)+'</span>'+pill(x.locked?'Đã khóa':'Đang mở')+'</div>';}).join('')+'</div><div class="card"><h2>Gmail quản trị</h2><p class="subtle">Đăng nhập bằng Google, tự đăng nhập khi mở App bằng Gmail được cấp. Không có mật khẩu quản trị trong App.</p><div id="adminGmailList" class="subtle"></div><h3 style="margin-top:25px">Kiểm tra liên kết</h3><p class="subtle">Đối chiếu mã giữa các biểu nguồn, APP_CONG_VIEC và tài khoản.</p>'+btn('linkCheck','Kiểm tra liên kết','','primary')+'<h3 style="margin-top:25px">Nhật ký có lưu phiên bản</h3><p class="subtle">Tra cứu lần kê khai, xét duyệt và thay đổi tài khoản. Nội dung xác thực được ẩn.</p>'+btn('history','Xem nhật ký')+'</div></div>';
   adminGmailInfo_();
 }
@@ -622,6 +639,7 @@ function accountForm(id){
     '<div class="position-checklist" id="positionChecklist">'+checklist+'</div></div>'+
     '<div><label for="primaryPosition">Vị trí chính</label><select id="primaryPosition" name="primary"></select><small>Tích chọn một hoặc nhiều VTVL. Không cần dùng Ctrl; mỗi tài khoản có một vị trí chính.</small></div>'+
     (allFields_().length?'<div style="margin-top:16px"><label>Lĩnh vực phụ trách <small>(chỉ áp dụng khi tài khoản có VTVL Phó Giám đốc)</small></label><div class="field-chips">'+allFields_().map(function(f){return '<label class="check"><input type="checkbox" name="fields" value="'+e(f)+'" '+((u.fields||[]).includes(f)?'checked':'')+'>'+e(f)+'</label>';}).join('')+'</div></div>':'')+
+    (isAdminAcc?'':'<label class="check"><input type="checkbox" name="selfSelect" '+((u.selfSelect||!id)?'checked':'')+'>Cho phép tài khoản <b>tự chọn / đổi vị trí việc làm</b> khi đăng nhập (trường hợp đặc biệt: có thể để trống VTVL ở trên)</label>')+
     '<label class="check"><input type="checkbox" name="active" '+(u.active?'checked':'')+'>Tài khoản hoạt động</label></form>';
   modal(id?'Sửa tài khoản':'Tạo tài khoản con',body,btn('saveAccount','Lưu tài khoản','','primary'));
   if(id)$('accountForm').elements.id.readOnly=true;
@@ -657,7 +675,7 @@ async function saveAccount(){
   var f=$('accountForm'),fd=new FormData(f),u=S.accountEditing;
   var pwv=String(fd.get('password')||'');
   if(!u.version&&!fd.getAll('roles').includes('ADMIN')&&!pwv)throw Error('Nhập mật khẩu cho tài khoản mới (hoặc bấm “Tạo ngẫu nhiên”).');
-  var r=await rpc('saveAccount',{id:String(fd.get('id')||'').trim().toLowerCase(),name:fd.get('name'),password:pwv,roles:fd.getAll('roles'),positions:fd.getAll('positions'),primary:fd.get('primary'),fields:fd.getAll('fields'),active:fd.has('active'),version:u.version});
+  var r=await rpc('saveAccount',{id:String(fd.get('id')||'').trim().toLowerCase(),name:fd.get('name'),password:pwv,roles:fd.getAll('roles'),positions:fd.getAll('positions'),primary:fd.get('primary'),fields:fd.getAll('fields'),selfSelect:fd.has('selfSelect'),active:fd.has('active'),version:u.version});
   $('dialog').close();if(r.user.id===S.model.user.id){sessionStorage.removeItem('vtvlToken');S.token='';$('shell').classList.add('hidden');$('login').classList.remove('hidden');msg('Đã lưu tài khoản của bạn. Vui lòng đăng nhập lại.');return;}await reload();if(r.password)modal(r.created?'Đã tạo tài khoản':'Đã đổi mật khẩu','<p>ID đăng nhập: <code style="font-size:19px">'+e(r.user.id)+'</code></p><p>Mật khẩu: <code style="font-size:21px">'+e(r.password)+'</code></p><p class="subtle">Giao trực tiếp cho đúng cá nhân. Đăng nhập chỉ cần ID và mật khẩu này.</p>',btn('close','Đã ghi nhận'));else msg('Đã lưu tài khoản. Các phiên cũ của tài khoản đã hết hiệu lực.');
 }
 function csv(name,rows){
@@ -718,6 +736,9 @@ async function action(a,b){
   if(a==='backToTasks'){S.filters.task='';renderTaskFlow_();return;}
   if(a==='editScopedWork'){var wk=S.model.data.A2.find(function(x){return x.id===b.dataset.id;});if(wk)openWorkProposal_(wk.id,wk.task,wk.position);return;}
   if(a==='addScopedWork'){pickAddPosition_();return;}
+  if(a==='pickMyPositions'){modal('Vị trí việc làm của bạn',myPositionsCard_(false).replace('<div class="actions">'+btn('saveMyPositions','Lưu vị trí việc làm','','primary')+'</div>',''),btn('saveMyPositions','Lưu vị trí việc làm','','primary')+btn('close','Hủy'));refreshMyPrimary_();return;}
+  if(a==='saveMyPositions'){var mp=Array.from(document.querySelectorAll('input[name="myPos"]:checked')).map(function(x){return x.value;});if(!mp.length)throw Error('Hãy tích ít nhất một vị trí việc làm.');
+    await rpc('setMyPositions',{positions:mp,primary:$('myPrimary')?$('myPrimary').value:''});if($('dialog').open)$('dialog').close();S.filters.position='';S.filters.task='';await reload();msg('Đã lưu vị trí việc làm. Danh sách nhiệm vụ và công việc đã cập nhật.');return;}
   if(a==='addFromDetail'){$('dialog').close();S.filters.task=b.dataset.id;pickAddPosition_();return;}
   if(a==='addForPosition'){$('dialog').close();openWorkProposal_(null,S.filters.task,b.dataset.id);return;}
   if(a==='prev'||a==='next'){return;}
@@ -772,6 +793,8 @@ document.addEventListener('change',function(ev){
   }
 });
 document.addEventListener('input',function(ev){
+  if(ev.target.id==='myPosSearch'){var q=ev.target.value.toLowerCase();document.querySelectorAll('#myPosList label').forEach(function(l){l.classList.toggle('hidden',q&&l.dataset.name.indexOf(q)<0);});return;}
+  if(ev.target.name==='myPos'){refreshMyPrimary_();return;}
   if(ev.target.id==='taskSearch'){S.filters.q=ev.target.value;var t=ev.target.selectionStart;renderTaskFlow_();var search=$('taskSearch');if(search){search.focus();search.setSelectionRange(t,t);}return;}
   if(ev.target.id==='positionSearch'){
     filterPositionChecks_();return;
