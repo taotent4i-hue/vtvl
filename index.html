@@ -17,7 +17,8 @@
 .acc-task-head b{flex:1;font-size:14px;line-height:1.45}.acc-works{padding:0 14px 12px}
 .acc-more{border:0;background:none;color:var(--muted);text-decoration:underline;font-size:13px;margin-top:12px;padding:0}
 .field-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.field-chips .check{border:1px solid var(--line);border-radius:999px;padding:6px 12px;margin:0;font-weight:500}
-.unassigned{font-size:13px;margin-top:12px}.dep-tabs{display:flex;gap:0;margin:0 0 18px;border-bottom:2px solid var(--line)}
+.unassigned{font-size:13px;margin-top:12px}.work-stamp{margin:10px 0 0 44px;display:inline-block;font-size:12px;font-weight:650;color:#177257;background:#e5f5ee;border-radius:999px;padding:3px 10px}@media(max-width:700px){.work-stamp{margin-left:0}}
+.work-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px;padding-left:44px}.work-actions button{padding:7px 13px;font-size:13px}@media(max-width:700px){.work-actions{padding-left:0}}.dep-tabs{display:flex;gap:0;margin:0 0 18px;border-bottom:2px solid var(--line)}
 .dep-tab{flex:1;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;border-radius:0;padding:14px 10px;font-size:15px;font-weight:650;color:var(--muted)}
 .dep-tab.active{color:var(--blue);border-bottom-color:var(--blue)}.dep-tab small{margin-left:8px;border-radius:999px;padding:2px 9px;background:#eef3f9;font-size:12px}
 @media(max-width:600px){.dep-tab{font-size:13px;padding:12px 6px}}.unassigned b{color:var(--red)}
@@ -67,6 +68,19 @@ function staff(){return has('ADMIN')||has('TONGHOP')||has('DUYET');}
 function msg(message,error){$('toast').textContent=message;$('toast').className='toast'+(error?' error':'');setTimeout(function(){$('toast').classList.add('hidden');},6500);}
 var inFlight=0;
 function busy(on){inFlight+=on?1:-1;if(inFlight<0)inFlight=0;$('busy').classList.toggle('hidden',!inFlight);document.querySelectorAll('button[data-save],button[data-review]').forEach(function(b){b.disabled=!!inFlight;});}
+/** Khi không gọi được máy chủ: thử "ping" kiểu JSONP (không bị chặn CORS) để biết chính xác nguyên nhân. */
+function diagnoseApi_(){
+  return new Promise(function(resolve){
+    var name='vtvlPing'+Date.now(),done=false,s=document.createElement('script');
+    var finish=function(text){if(done)return;done=true;try{delete window[name];}catch(x){}s.remove();resolve(text);};
+    window[name]=function(info){finish(info&&info.api?'Máy chủ App vẫn hoạt động ('+info.codeVersion+') nhưng trình duyệt/mạng đang chặn kết nối. Hãy thử tắt tiện ích chặn quảng cáo, đổi trình duyệt (Chrome) hoặc mạng khác.':'Máy chủ App phản hồi không đúng.');};
+    s.onerror=function(){finish('Không kết nối được máy chủ App. Kiểm tra mạng rồi thử lại.');};
+    s.onload=function(){setTimeout(function(){finish('Máy chủ App đang chạy MÃ CŨ (chưa có chức năng kết nối). Quản trị viên: Triển khai → Quản lý triển khai → bút chì → Phiên bản mới → Triển khai; hoặc link máy chủ trong index.html chưa đúng.');},300);};
+    setTimeout(function(){finish('Máy chủ App không phản hồi. Kiểm tra mạng rồi thử lại.');},12000);
+    s.src=window.VTVL_API+(window.VTVL_API.indexOf('?')>=0?'&':'?')+'ping=1&callback='+name;
+    document.head.appendChild(s);
+  });
+}
 async function rpc(action,args){
   busy(true);try{
     if(window.LOCAL_PREVIEW){if(action==='boot')return window.LOCAL_PREVIEW.boot;if(action==='reports')return window.LOCAL_PREVIEW.report;throw Error('Bản xem trước chỉ đọc. Chức năng này cần Web App đã triển khai trên Google.');}
@@ -76,7 +90,7 @@ async function rpc(action,args){
     }else if(window.VTVL_API){
       // Trang đặt ngoài Google: gọi API JSON (không dùng cookie Google, nên không lỗi khi trình duyệt có nhiều tài khoản / mở từ Zalo).
       var resp;try{resp=await fetch(window.VTVL_API,{method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:action,args:args||{},token:S.token||''})});}
-      catch(err){throw Error('Không kết nối được máy chủ App. Kiểm tra mạng rồi thử lại.');}
+      catch(err){throw Error(await diagnoseApi_());}
       var txt=await resp.text();
       try{r=JSON.parse(txt);}catch(err){throw Error('Máy chủ App chưa mở công khai. Quản trị viên kiểm tra triển khai: Người có quyền truy cập = Bất kỳ ai.');}
     }else throw Error('Mở ứng dụng bằng đường dẫn chính thức của App.');
@@ -165,6 +179,8 @@ function scope_(){
   var selected=f.position?[f.position]:ids;
   return {sub:sub,allowed:allowed,selected:selected};
 }
+function deputyEditable_(task){var dp=S.model.deputy;return !!(dp&&has('CANHAN')&&!S.filters.account&&dp.chosen.length&&dp.chosen.includes(fieldMap_().known[task]));}
+function canEditWork_(w){return canPropose_(w.position)||deputyEditable_(w.task);}
 function canPropose_(position){
   return has('CANHAN')&&!(has('ADMIN')&&S.filters.account)&&S.model.user.positions.includes(position);
 }
@@ -261,18 +277,20 @@ function holderText_(pos){var h=(S.model.deputy&&S.model.deputy.holders[pos])||[
 /** Danh sách công việc của một nhiệm vụ (hiện ngay dưới nhiệm vụ khi bấm mở). */
 function worksHtml_(task,works,scope){
   var staffTab=depTab_()==='staff';
-  var canAdd=!staffTab&&has('CANHAN')&&scope.selected.some(function(x){return canPropose_(x);}),html='<div class="acc-works">';
+  var canAdd=staffTab?deputyEditable_(task.id):has('CANHAN')&&scope.selected.some(function(x){return canPropose_(x);}),html='<div class="acc-works">';
   if(!works.length)html+='<div class="empty">Chưa có công việc thuộc vị trí đang xem.'+(canAdd?' Nếu đây là nhiệm vụ thực tế của bạn, hãy bấm Thêm mới bên dưới.':'')+'</div>';
     works.forEach(function(w,i){
-      var m=workMeasure_(w),edit=canPropose_(w.position),a=edit?'editScopedWork':'detail';
+      var m=workMeasure_(w),edit=canEditWork_(w);
       var other=staffTab?'<br><small><b>VTVL: '+e(posName(w.position))+'</b> · '+e(holderText_(w.position))+'</small>':scope.selected.length>1?'<small>VTVL: '+e(posName(w.position))+'</small>':'';
       var statuses=scope.sub?S.model.requests.filter(function(x){return x.type==='A2'&&x.user===scope.sub.id&&x.work===w.id;}):[];
       var last=statuses.length?statuses[statuses.length-1]:null;
-      html+='<button class="work-item" type="button" data-action="'+a+'" data-id="'+e(w.id)+'" aria-label="'+e(edit?'Đề nghị chỉnh sửa: '+w.name:'Xem công việc: '+w.name)+'">'+
-        '<div class="work-head"><span class="work-number">'+(i+1)+'</span><div style="flex:1;text-align:left"><b>'+e(w.name)+'</b><br><small>'+e(w.id)+'</small> '+other+'</div><strong>'+e(edit?'Chỉnh sửa →':'Xem →')+'</strong></div>'+
+      html+='<div class="work-item">'+
+        '<div class="work-head"><span class="work-number">'+(i+1)+'</span><div style="flex:1;text-align:left"><b>'+e(w.name)+'</b><br><small>'+e(w.id)+'</small> '+other+'</div></div>'+
         '<div class="work-info"><span>Sản phẩm: '+e(w.product||'Chưa kê khai')+'</span><span>Đơn vị: '+e(w.unit||'—')+'</span>'+
         '<span>SP/năm: '+(m.quantity===null?'—':n(m.quantity))+'</span><span>Phút/SP: '+(m.minutes===null?'—':n(m.minutes))+'</span>'+
-        (last?'<span>Đề nghị: '+e(last.status)+'</span>':'')+'</div></button>';
+        (last?'<span>Đề nghị: '+e(last.status)+'</span>':'')+'</div>'+
+        (w.directInput?'<div class="work-stamp">'+(w.changeType==='Thêm mới'?'＋ Mới thêm':'✎ Đã cập nhật')+' · '+e(w.updatedAt)+(w.user?' · '+e(w.user):'')+'</div>':'')+
+        '<div class="work-actions">'+btn('detail','Xem chi tiết','data-id="'+e(w.id)+'"')+(edit?btn('editScopedWork','✎ Sửa công việc','data-id="'+e(w.id)+'"','primary'):'')+'</div></div>';
     });
     var requestUser=scope.sub?scope.sub.id:!staff()?S.model.user.id:'';
     var pendingWork=[]; // A2 is now written directly to APP_CONG_VIEC, not queued for approval.
@@ -282,7 +300,7 @@ function worksHtml_(task,works,scope){
         '<b>'+e(r.values.name||'Công việc mới')+'</b><br><small>'+e(r.status)+' · '+e(r.userName||r.user)+' · '+e(r.work)+'</small></button>';});
     }
     if(canAdd){
-      html+='<div class="add-work-footer">'+btn('addScopedWork','＋ Thêm mới công việc thuộc nhiệm vụ này','','primary')+
+      html+='<div class="add-work-footer">'+btn('addScopedWork','＋ Thêm công việc mới vào nhiệm vụ này','','primary')+
         '<p class="subtle" style="margin:9px 0 0">Bắt buộc: tên công việc và sản phẩm. Các trường khác có thể để trống.</p></div>';
     }
     if(staff()&&!canAdd)html+='<p class="subtle" style="margin-top:14px">Đang ở chế độ quản lý/tra cứu, không gửi yêu cầu thay tài khoản con.</p>';
@@ -332,7 +350,8 @@ function renderTaskFlow_(){
 }
 function pickAddPosition_(){
   var scope=scope_(),positions=scope.selected.filter(function(id){return canPropose_(id);});
-  if(!positions.length){msg('Tài khoản này chưa được cấp VTVL để đề nghị bổ sung.',true);return;}
+  if(depTab_()==='staff'&&deputyEditable_(S.filters.task)){var own=S.model.user.positions||[],inField={};scopedWorks_(scope).forEach(function(w){inField[w.position]=true;});positions=S.model.data.C1.map(function(c){return c.id;}).filter(function(id){return !own.includes(id)&&inField[id];});if(!positions.length)positions=S.model.data.C1.map(function(c){return c.id;}).filter(function(id){return !own.includes(id);});}
+  if(!positions.length){msg('Tài khoản này chưa được cấp VTVL để thêm công việc.',true);return;}
   if(positions.length===1){openWorkProposal_(null,S.filters.task,positions[0]);return;}
   modal('Chọn VTVL cho công việc mới','<p>Chọn VTVL mà công việc mới sẽ thuộc về:</p>'+positions.map(function(id){return '<p>'+btn('addForPosition',posName(id),'data-id="'+e(id)+'"')+'</p>';}).join(''),btn('close','Đóng'));
 }
@@ -342,7 +361,7 @@ function detail(id){
   var metric=workMeasure_(x);
   var fields=[['Mã công việc',x.id],['Mã nhiệm vụ',x.task],['Vị trí việc làm',posName(x.position)],['Tên công việc',x.name],['Sản phẩm',x.product],['Đơn vị tính',x.unit],['Chất lượng',x.quality],['Số sản phẩm/năm',metric.quantity===null?'Chưa có':metric.quantity],['Trung bình phút/1 sản phẩm',metric.minutes===null?'Chưa có':metric.minutes],['Căn cứ',x.basis]];
   var b1=S.model.data.B1.filter(function(b){return b.work===id&&b.position===x.position;});
-  var footer=canPropose_(x.position)?btn('editScopedWork','Đề nghị chỉnh sửa','data-id="'+e(id)+'"','primary'):btn('close','Đóng');
+  var footer=canEditWork_(x)?btn('editScopedWork','✎ Sửa công việc này','data-id="'+e(id)+'"','primary')+btn('addFromDetail','＋ Thêm công việc mới cùng nhiệm vụ','data-id="'+e(x.task)+'"')+btn('close','Đóng'):btn('close','Đóng');
   modal('Chi tiết công việc',table(['Trường thông tin','Nội dung'],fields.map(function(p){return [e(p[0]),e(p[1])];}))+
     '<h3 style="margin-top:20px">Khối lượng B1 từ nguồn · '+b1.length+' dòng</h3>'+table(['Kỳ','Sản lượng','Phút/SP','Tổng giờ tính lại'],b1.map(function(b){return [e(b.period),n(b.quantity),n(b.minutes),n(b.hours)];}))+
     (x.approvalConflict?'<div class="notice warning">Nguồn đã thay đổi so với lúc phê duyệt. Nội dung được duyệt vẫn được giữ để đối chiếu.</div>':''),footer);
@@ -381,7 +400,7 @@ function openWorkProposal_(workId,taskId,positionId,record){
   var d=S.model.data,work=d.A2.find(function(x){return x.id===(workId||(record&&record.work));});
   var task=record?record.task:(work?work.task:taskId||S.filters.task);
   var position=record?record.position:(work?work.position:positionId||S.filters.position);
-  var allowed=S.model.user.positions||[];
+  var allowed=(S.model.user.positions||[]).slice();if(deputyEditable_(task))S.model.data.C1.forEach(function(c){if(!allowed.includes(c.id))allowed.push(c.id);});
   if(!task||!d.A1.some(function(x){return x.id===task})){msg('Cần chọn một nhiệm vụ chính A1 trước khi bổ sung công việc.',true);return;}
   if(!position||!allowed.includes(position)){msg('Cần chọn VTVL được quản trị viên cấp quyền.',true);return;}
   if(work&&(work.task!==task||work.position!==position)){msg('Công việc không thuộc nhiệm vụ/VTVL được chọn.',true);return;}
@@ -397,7 +416,7 @@ function openWorkProposal_(workId,taskId,positionId,record){
     '<input type="hidden" name="period" value="'+e(period)+'"><input type="hidden" name="basis" value="'+e(values.basis||work&&work.basis||'')+'">'+
     '<input type="hidden" name="implementation" value="'+e(values.implementation||'Đang thực hiện')+'">';
   var form='<div class="notice"><b>Nhiệm vụ:</b> '+e(p.name)+'<br><b>Vị trí:</b> '+e(posName(position))+'</div>'+
-    (work?'<div class="notice warning">Bạn đang đề nghị chỉnh sửa công việc <b>'+e(work.id)+'</b>. Nội dung sau khi lưu sẽ cập nhật ngay trong sheet vận hành và danh sách công việc.</div>':
+    (work?'<div class="notice warning">Bạn đang sửa công việc <b>'+e(work.id)+'</b>. Nội dung sau khi lưu được cập nhật ngay vào danh sách công việc.</div>':
      '<div class="notice">Thêm công việc mới: sau khi lưu sẽ xuất hiện ngay trong sheet vận hành và ứng dụng.</div>')+
     '<form id="declaration">'+hidden+'<div class="grid2">'+
     proposalSixInput_('name','Tên công việc',values.name,false)+
@@ -409,8 +428,8 @@ function openWorkProposal_(workId,taskId,positionId,record){
     '<div id="workCalculation" class="notice" style="margin-top:16px">Chỉ cần nhập Tên công việc và Sản phẩm. Các trường khác được phép để trống. Chỉ tính giờ khi đã có cả sản lượng và phút/SP.</div>'+
     '<details><summary>Giải trình bổ sung (không bắt buộc)</summary>'+input('reason','Lý do / thông tin bổ sung',record?record.reason:'','area')+'</details>'+
     (record&&record.status==='Yêu cầu bổ sung'?'<label class="check"><input type="checkbox" name="rebase">Tôi đã đối chiếu dữ liệu hiện tại để cập nhật đề nghị theo phiên bản mới.</label>':'')+'</form>';
-  modal(work?'Đề nghị chỉnh sửa công việc':'Đề nghị thêm công việc',form,
-    btn('sendForm','Lưu ngay vào danh sách công việc','data-save="1"','primary'));
+  modal(work?'Sửa công việc':'Thêm công việc mới',form,
+    btn('sendForm','Lưu công việc','data-save="1"','primary')+btn('close','Hủy'));
 }
 function openForm(type,record,workId,positionId,tableKey,rowId){
   if(type==='A2'&&has('CANHAN'))return openWorkProposal_(workId,(record&&record.task)||S.filters.task,positionId,record);
@@ -454,8 +473,8 @@ async function saveForm(mode){
   if(edit.type==='A2'&&has('CANHAN')){
     if(!f.reportValidity())return;
     var r=await rpc('saveWork',{nonce:edit.nonce,position:v.position,task:v.task,work:v.work,values:values});
-    $('dialog').close();msg('Đã '+(r.created?'thêm':'cập nhật')+' công việc trên sheet vận hành.');
-    S.filters.task=v.task;S.filters.position=v.position;await reload();return;
+    $('dialog').close();msg('Đã '+(r.created?'thêm':'cập nhật')+' công việc. Danh sách đã được cập nhật ngay, không cần chờ duyệt.');
+    S.filters.task=v.task;if((S.model.user.positions||[]).includes(v.position)&&depTab_()!=='staff')S.filters.position=v.position;await reload();return;
   }
   if(edit.type==='TONGHOP'){values.patch={};Object.keys(values).forEach(function(k){if(k.startsWith('patch:')){values.patch[k.slice(6)]=values[k];delete values[k];}});}
   var r=await rpc('save',{type:edit.type,id:edit.id,version:edit.version,nonce:edit.nonce,position:v.position,period:v.period,work:v.work,task:v.task,reason:v.reason,values:values,mode:mode,rebase:v.rebase==='on'});
@@ -699,6 +718,7 @@ async function action(a,b){
   if(a==='backToTasks'){S.filters.task='';renderTaskFlow_();return;}
   if(a==='editScopedWork'){var wk=S.model.data.A2.find(function(x){return x.id===b.dataset.id;});if(wk)openWorkProposal_(wk.id,wk.task,wk.position);return;}
   if(a==='addScopedWork'){pickAddPosition_();return;}
+  if(a==='addFromDetail'){$('dialog').close();S.filters.task=b.dataset.id;pickAddPosition_();return;}
   if(a==='addForPosition'){$('dialog').close();openWorkProposal_(null,S.filters.task,b.dataset.id);return;}
   if(a==='prev'||a==='next'){return;}
   if(a==='newA2'){pickAddPosition_();return;}
