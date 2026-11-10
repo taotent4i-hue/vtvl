@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="vi"><head><meta name="robots" content="noindex"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>APP VTVL • An Hội Đông</title>
+<style>
+:root{--blue:#104d86;--navy:#102d4d;--red:#b12f36;--bg:#f3f6fa;--text:#223449;--muted:#61748a;--line:#dce4ee;--green:#148264}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button,a,input,select,textarea{outline-offset:3px}button{cursor:pointer;border:1px solid var(--line);background:white;border-radius:8px;padding:9px 15px;color:var(--blue);font-weight:600}button:hover{background:#eaf2fb}button:disabled{cursor:wait;opacity:.55}.primary{background:var(--blue);border-color:var(--blue);color:white}.primary:hover{background:#0a3a68}.danger{color:#aa2731}.subtle{font-size:13px;color:var(--muted)}.hidden{display:none!important}input,select,textarea{width:100%;padding:10px 12px;border:1px solid #c5d2e0;border-radius:7px;background:white;color:var(--text)}select[multiple]{height:160px}textarea{min-height:92px;resize:vertical}label{display:block;font-size:13px;font-weight:650;margin:12px 0 5px}h1,h2,h3,p{margin-top:0}h1{font-size:27px;letter-spacing:-.5px}h2{font-size:21px}h3{font-size:16px}small{color:var(--muted)}.login{min-height:100vh;display:grid;place-items:center;padding:30px;background:linear-gradient(135deg,#e7f0fb,#f6f8fb 60%,#e5ebf3)}.login-card{width:min(480px,100%);padding:35px;background:white;border-radius:18px;box-shadow:0 18px 60px #19375917;border-top:5px solid var(--blue)}.brand-kicker{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:700}.login h1{color:var(--red);font-size:25px;margin-top:13px}.login .primary{width:100%;margin-top:22px}.logo{display:grid;place-items:center;background:#eaf2fa;color:var(--blue);font-weight:800;width:48px;height:48px;border-radius:12px}.shell{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}.sidebar{background:var(--navy);color:#d6e6f6;padding:26px 18px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column}.sidebar .brand-kicker{color:#97b7d8}.sidebar h2{color:white;margin-top:11px;font-size:20px;line-height:1.3}.sidebar nav{margin-top:26px;display:grid;gap:7px}.sidebar nav button{text-align:left;background:transparent;border:0;color:#bdd0e3;font-weight:500;padding:12px 13px}.sidebar nav button.active{background:#275173;color:white}.sidebar .foot{margin-top:auto;border-top:1px solid #ffffff20;padding-top:18px;font-size:12px;color:#9db6cf}.topbar{background:white;border-bottom:1px solid var(--line);padding:17px 30px;display:flex;justify-content:space-between;align-items:center;gap:15px}.topbar strong{font-size:13px;color:var(--red)}.user-box{display:flex;align-items:center;gap:12px}.avatar{display:grid;place-items:center;background:#e9f1fa;color:var(--blue);height:35px;width:35px;border-radius:50%;font-size:12px;font-weight:700}.content{padding:29px 30px;max-width:1600px;margin:auto}.heading{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:23px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.7px;color:var(--blue);font-weight:700;margin-bottom:7px}.card{background:white;border:1px solid var(--line);border-radius:12px;padding:22px;margin-bottom:20px;box-shadow:0 3px 14px #17345603}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.stat{padding:22px}.stat .value{font-size:33px;line-height:1.2;letter-spacing:-1px;font-weight:750;color:var(--navy);margin:12px 0 6px}.stat .label{font-size:13px;color:var(--muted)}.two{display:grid;grid-template-columns:1.35fr 1fr;gap:20px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}.filters{display:grid;grid-template-columns:1fr 1fr 1fr 1.4fr;gap:12px;margin-bottom:18px}.tag{display:inline-block;border-radius:30px;padding:3px 9px;font-size:11px;font-weight:650;background:#eef3f9;color:#4a6078}.tag.green{background:#e5f5ee;color:#177257}.tag.amber{background:#fff1d7;color:#89600c}.tag.red{background:#fbe9e9;color:#a22b35}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;text-align:left;font-size:13px}th{font-size:11px;letter-spacing:.3px;color:#63768c;font-weight:650;background:#f6f8fb}th,td{padding:13px 12px;border-bottom:1px solid var(--line);vertical-align:top}td.wide{min-width:280px}td code{font-size:11px}code{white-space:normal;word-break:break-word;background:#eff3f8;padding:2px 4px;border-radius:3px}tr:last-child td{border-bottom:0}.task{border:1px solid var(--line);border-radius:10px;padding:16px;margin:13px 0;cursor:pointer}.task:hover{border-color:#7ca4ce;background:#fbfdff}.task p{margin:7px 0 8px;font-weight:650}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.notice{padding:12px 15px;background:#eaf2fb;border:1px solid #d0e1f3;border-radius:8px;font-size:13px;margin-bottom:18px}.warning{background:#fff8e8;border-color:#eedaaa}.empty{padding:36px;text-align:center;color:var(--muted)}.progress{height:7px;background:#e9eff6;border-radius:5px;margin:9px 0 16px;overflow:hidden}.progress>span{display:block;height:100%;background:var(--green)}dialog{border:0;border-radius:14px;width:min(840px,95vw);max-height:90vh;padding:0;box-shadow:0 30px 100px #0b243b40}dialog::backdrop{background:#142f4c77}dialog .modal-head{padding:21px 25px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:15px}dialog .modal-head h2{margin:0}dialog .modal-body{padding:22px 25px}dialog .modal-footer{padding:16px 25px;border-top:1px solid var(--line);display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}.check{display:inline-flex;align-items:center;gap:7px;margin-right:14px}.check input{width:auto}.toast{position:fixed;right:25px;bottom:24px;background:var(--navy);color:white;max-width:500px;z-index:1000;padding:14px 20px;border-radius:10px;box-shadow:0 10px 30px #0003}.toast.error{background:#9f2834}.loading{position:fixed;top:0;left:0;height:4px;width:100%;background:linear-gradient(90deg,#104d86,#82c4ff,#104d86);animation:load 1s linear infinite;z-index:2000}@keyframes load{0%{opacity:.3}50%{opacity:1}100%{opacity:.3}}.mobile-nav{display:none}.muted{color:var(--muted)}.full{grid-column:1/-1}.link{color:var(--blue);text-decoration:none}.checklist{display:grid;gap:12px}.step{display:flex;gap:13px;align-items:flex-start}.step span:first-child{background:#edf3fa;color:var(--blue);border-radius:50%;width:25px;height:25px;flex-shrink:0;text-align:center;font-size:12px;line-height:25px}.metric-line{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}details{margin:12px 0}summary{cursor:pointer;color:var(--blue);font-weight:600}
+@media(max-width:1050px){.shell{grid-template-columns:205px minmax(0,1fr)}.content{padding:22px}.topbar{padding:15px 22px}.two{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.filters{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.shell{display:block}.sidebar{display:none}.topbar{padding:14px 16px}.topbar strong{max-width:200px;font-size:10px}.content{padding:20px 14px}.mobile-nav{display:block;background:white;padding:8px 14px;border-bottom:1px solid var(--line)}.grid2{grid-template-columns:1fr}.filters{grid-template-columns:1fr}.heading{flex-wrap:wrap}.stat{padding:16px}.stat .value{font-size:28px}.card{padding:17px}.user-box small{display:none}h1{font-size:23px}.login-card{padding:26px}.modal-body{padding:17px!important}.toast{left:15px;right:15px;bottom:15px}.stats{gap:10px}.full{grid-column:auto}}
+@media print{.sidebar,.topbar,.mobile-nav,button,.filters{display:none!important}.shell{display:block}.content{padding:0}.card{box-shadow:none;break-inside:avoid}body{background:white}}
+
+.scope-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;align-items:end}
+.acc{padding:0;overflow:hidden}.acc-head{width:100%;display:flex;align-items:center;gap:12px;padding:17px 20px;background:white;border:0;border-radius:0;text-align:left;font-size:16px;font-weight:700;color:var(--navy)}
+.acc-head:hover{background:#f5f9ff}.acc-head .chev{display:inline-block;transition:transform .15s;color:var(--blue)}.acc-head.open .chev{transform:rotate(90deg)}
+.acc-head small,.acc-task-head small{margin-left:auto;white-space:nowrap;font-weight:650;font-size:12px;border-radius:999px;padding:3px 10px;background:#eef3f9;color:var(--blue)}
+.acc-head.zero{color:var(--muted)}.acc-head.zero small{background:#f2f2f2;color:var(--muted)}
+.acc-body{padding:4px 16px 16px;border-top:1px solid var(--line)}
+.acc-task{border:1px solid var(--line);border-radius:10px;margin-top:10px;background:#fbfcfe}.acc-task.open{background:white;border-color:#76a2d0}
+.acc-task-head{width:100%;display:flex;gap:10px;align-items:flex-start;padding:13px 14px;background:transparent;border:0;text-align:left;color:var(--text);font-weight:500}
+.acc-task-head b{flex:1;font-size:14px;line-height:1.45}.acc-works{padding:0 14px 12px}
+.acc-more{border:0;background:none;color:var(--muted);text-decoration:underline;font-size:13px;margin-top:12px;padding:0}
+.field-chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.field-chips .check{border:1px solid var(--line);border-radius:999px;padding:6px 12px;margin:0;font-weight:500}
+.unassigned{font-size:13px;margin-top:12px}.work-stamp{margin:10px 0 0 44px;display:inline-block;font-size:12px;font-weight:650;color:#177257;background:#e5f5ee;border-radius:999px;padding:3px 10px}@media(max-width:700px){.work-stamp{margin-left:0}}
+.work-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px;padding-left:44px}.work-actions button{padding:7px 13px;font-size:13px}@media(max-width:700px){.work-actions{padding-left:0}}.dep-tabs{display:flex;gap:0;margin:0 0 18px;border-bottom:2px solid var(--line)}
+.dep-tab{flex:1;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;border-radius:0;padding:14px 10px;font-size:15px;font-weight:650;color:var(--muted)}
+.dep-tab.active{color:var(--blue);border-bottom-color:var(--blue)}.dep-tab small{margin-left:8px;border-radius:999px;padding:2px 9px;background:#eef3f9;font-size:12px}
+@media(max-width:600px){.dep-tab{font-size:13px;padding:12px 6px}}.unassigned b{color:var(--red)}
+.scope-bar label{margin-top:0}.task-board{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-top:18px}
+.task-item{width:100%;display:flex;flex-direction:column;align-items:stretch;text-align:left;padding:16px;gap:9px;min-height:126px;color:var(--text);border:1px solid var(--line);border-radius:12px;background:white;font-weight:500}
+.task-item:hover{border-color:#76a2d0;background:#f5f9ff}.task-item b{font-size:14px;line-height:1.45;flex:1}
+.task-code{color:var(--blue);font-size:12px;font-weight:750}.task-foot{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.task-foot span{color:var(--blue);font-size:23px;line-height:17px}
+.work-item{display:block;width:100%;color:var(--text);margin:10px 0;text-align:left;border:1px solid var(--line);padding:17px;background:white;border-radius:12px;font-weight:400}
+.work-item:hover{border-color:#7da8d2;background:#f5f9ff}.work-head{display:flex;align-items:start;gap:12px}.work-head b{font-size:15px}.work-head strong{font-size:12px;color:var(--blue);white-space:nowrap}
+.work-number{display:inline-grid;place-items:center;border-radius:50%;background:#edf3fb;color:var(--blue);font-size:12px;font-weight:700;width:29px;height:29px;flex-shrink:0}
+.work-info{display:flex;gap:8px 18px;flex-wrap:wrap;text-align:left;padding-left:42px;margin-top:12px;color:var(--muted);font-size:12px}
+.add-work-footer{margin-top:20px;padding:21px 16px;border:1px dashed #8db4d7;border-radius:12px;text-align:center;background:#f7faff}
+.position-checklist{max-height:410px;overflow:auto;border:1px solid var(--line);border-radius:10px;padding:7px;margin-top:9px}
+.vtvl-checkbox{display:flex;align-items:center;gap:12px;padding:10px;border-bottom:1px solid var(--line);margin:0;font-weight:normal;cursor:pointer}.vtvl-checkbox:last-child{border-bottom:0}
+.vtvl-checkbox input{width:18px;height:18px;flex-shrink:0}.vtvl-checkbox span{font-size:13px}.vtvl-checkbox:hover{background:#f4f8fc}
+@media(max-width:700px){.task-board{grid-template-columns:1fr}.work-info{padding-left:0}.work-head strong{white-space:normal}.scope-bar{grid-template-columns:1fr}}
+</style></head><body>
+<div id="busy" class="loading hidden"></div>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<section id="login" class="login"><div class="login-card">
+<div class="logo">VTVL</div><div class="brand-kicker" style="margin-top:20px">Phường An Hội Đông</div><h1>APP VỊ TRÍ VIỆC LÀM</h1><p class="subtle">Trung tâm Cung ứng dịch vụ công<br>Tra cứu, kê khai và tổng hợp công việc.</p>
+<div id="childLoginBox"><form id="loginForm"><label for="loginId">ID đăng nhập</label><input id="loginId" autocomplete="username" autocapitalize="none" spellcheck="false" required placeholder="ID do quản trị viên cấp">
+<label for="loginPassword">Mật khẩu</label><input id="loginPassword" type="password" maxlength="6" autocomplete="current-password" required aria-describedby="pwHint"><small id="pwHint">Mật khẩu do quản trị viên đặt. Quên mật khẩu: liên hệ quản trị viên.</small>
+<button class="primary" type="submit">Đăng nhập →</button></form>
+<p style="margin:22px 0 0;text-align:center"><button type="button" id="showAdmin" data-action="showAdminLogin" style="border:0;background:none;color:var(--muted);font-size:13px;text-decoration:underline">Quản trị viên đăng nhập bằng Gmail</button></p></div>
+<div id="adminLoginBox" class="hidden"><p><button type="button" id="showChild" data-action="showChildLogin">← Đăng nhập bằng ID và mật khẩu</button></p><p>Xác nhận Gmail quản trị <b>một lần</b> bằng mã gửi về hộp thư; từ lần sau máy này tự đăng nhập.</p>
+<div id="otpStep1"><label for="otpEmail">Gmail quản trị</label><input id="otpEmail" type="email" autocomplete="email" placeholder="ví dụ: taotent4i@gmail.com"><div class="actions"><button type="button" data-action="sendAdminCode" class="primary">Gửi mã xác nhận</button></div></div>
+<div id="otpStep2" class="hidden"><label for="otpCode">Mã 6 số trong thư</label><input id="otpCode" inputmode="numeric" maxlength="6" autocomplete="one-time-code"><label class="check"><input type="checkbox" id="otpRemember" checked>Ghi nhớ máy này, không cần xác nhận lại</label><div class="actions"><button type="button" data-action="verifyAdminCode" class="primary">Xác nhận &amp; đăng nhập</button><button type="button" data-action="sendAdminCode">Gửi lại mã</button></div></div>
+<p class="subtle" style="margin-top:18px">Cách khác:</p>
+<div id="googleButton" style="min-height:43px"></div>
+<div class="actions"><button type="button" data-action="googleNativeLogin">Tiếp tục với Gmail đang đăng nhập</button></div>
+<small id="googleLoginHint">Nếu Google không xác định được Gmail trong Apps Script, hãy dùng nút Đăng nhập với Google ở trên.</small><div id="autoLoginNote" class="notice warning hidden" style="margin-top:12px"></div></div>
+<p id="loginNote" class="subtle" style="margin:18px 0 0"></p></div></section>
+<div id="shell" class="shell hidden"><aside class="sidebar"><div class="brand-kicker">Trung tâm cung ứng dịch vụ công</div><h2>VỊ TRÍ<br>VIỆC LÀM</h2><small style="color:#9bb7d4">Phường An Hội Đông</small><nav id="nav"></nav><div class="foot">Mỗi cá nhân tự kê khai.<br>Dữ liệu bổ sung ghi trực tiếp vào sheet vận hành.<br><br>Giờ hiển thị: Việt Nam (UTC+7)</div></aside><main><header class="topbar"><strong>TRUNG TÂM CUNG ỨNG DỊCH VỤ CÔNG<br>PHƯỜNG AN HỘI ĐÔNG</strong><div class="user-box"><span class="avatar" id="avatar">VT</span><div><b id="userName" style="font-size:13px"></b><br><small id="userRole"></small></div><button data-action="pickMyPositions" id="pickMyPosBtn" class="hidden" title="Chọn / đổi vị trí việc làm">Vị trí việc làm</button><button data-action="changePassword" title="Đổi mật khẩu">Mật khẩu</button><button data-action="logout" title="Đăng xuất">Thoát</button></div></header><div class="mobile-nav"><select id="mobileNav" aria-label="Chức năng"></select></div><div id="previewBanner"></div><div id="page" class="content"></div></main></div>
+<dialog id="dialog"><div class="modal-head"><h2 id="modalTitle"></h2><button data-action="close" aria-label="Đóng">×</button></div><div id="modalBody" class="modal-body"></div><div id="modalFooter" class="modal-footer"></div></dialog><div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+<script>window.VTVL_API="https://script.google.com/macros/s/AKfycbxxvW8tlSiYw-mph9-9qdkbU0f71hTceuNic-mzWkvnSCOkIxruYHxz8jZBvtYo15Zg/exec";</script>
+<script>
+'use strict';
+var S={token:sessionStorage.getItem('vtvlToken')||'',model:null,page:'lookup',formType:'A2',filters:{account:'',position:'',field:'',task:'',q:'',page:0},report:null,edit:null,plan:null,historyOffset:0};
+var roleNames={CANHAN:'Cá nhân kê khai',TONGHOP:'Chuyên viên tổng hợp',DUYET:'Người xét duyệt',ADMIN:'Quản trị viên'};
+var navs=[['overview','Tổng quan'],['lookup','Nhiệm vụ & công việc'],['forms','Kê khai cá nhân'],['progress','Tiến độ kê khai'],['review','Kiểm tra & xét duyệt'],['reports','Báo cáo & chất lượng'],['admin','Quản trị hệ thống']];
+function $(id){return document.getElementById(id);}
+function e(v){return String(v===undefined||v===null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function n(v){return v===null||v===undefined?'Chưa có':Number(v).toLocaleString('vi-VN',{maximumFractionDigits:2});}
+function has(r){return S.model&&S.model.user.roles.indexOf(r)>=0;}
+function staff(){return has('ADMIN')||has('TONGHOP')||has('DUYET');}
+function msg(message,error){$('toast').textContent=message;$('toast').className='toast'+(error?' error':'');setTimeout(function(){$('toast').classList.add('hidden');},6500);}
+var inFlight=0;
+function busy(on){inFlight+=on?1:-1;if(inFlight<0)inFlight=0;$('busy').classList.toggle('hidden',!inFlight);document.querySelectorAll('button[data-save],button[data-review]').forEach(function(b){b.disabled=!!inFlight;});}
+/** Khi không gọi được máy chủ: thử "ping" kiểu JSONP (không bị chặn CORS) để biết chính xác nguyên nhân. */
+function diagnoseApi_(){
+  return new Promise(function(resolve){
+    var name='vtvlPing'+Date.now(),done=false,s=document.createElement('script');
+    var finish=function(text){if(done)return;done=true;try{delete window[name];}catch(x){}s.remove();resolve(text);};
+    window[name]=function(info){finish(info&&info.api?'Máy chủ App vẫn hoạt động ('+info.codeVersion+') nhưng trình duyệt/mạng đang chặn kết nối. Hãy thử tắt tiện ích chặn quảng cáo, đổi trình duyệt (Chrome) hoặc mạng khác.':'Máy chủ App phản hồi không đúng.');};
+    s.onerror=function(){finish('Không kết nối được máy chủ App. Kiểm tra mạng rồi thử lại.');};
+    s.onload=function(){setTimeout(function(){finish('Máy chủ App đang chạy MÃ CŨ (chưa có chức năng kết nối). Quản trị viên: Triển khai → Quản lý triển khai → bút chì → Phiên bản mới → Triển khai; hoặc link máy chủ trong index.html chưa đúng.');},300);};
+    setTimeout(function(){finish('Máy chủ App không phản hồi. Kiểm tra mạng rồi thử lại.');},12000);
+    s.src=window.VTVL_API+(window.VTVL_API.indexOf('?')>=0?'&':'?')+'ping=1&callback='+name;
+    document.head.appendChild(s);
+  });
+}
+async function rpc(action,args){
+  var t0=Date.now();
+  busy(true);try{
+    if(window.LOCAL_PREVIEW){if(action==='boot')return window.LOCAL_PREVIEW.boot;if(action==='reports')return window.LOCAL_PREVIEW.report;throw Error('Bản xem trước chỉ đọc. Chức năng này cần Web App đã triển khai trên Google.');}
+    var r;
+    if(window.google&&google.script&&google.script.run){
+      r=await new Promise(function(resolve,reject){google.script.run.withSuccessHandler(resolve).withFailureHandler(function(x){reject(Error(x.message||'Không kết nối được máy chủ.'));}).vtvlApi(action,args||{},S.token);});
+    }else if(window.VTVL_API){
+      // Trang đặt ngoài Google: gọi API JSON (không dùng cookie Google, nên không lỗi khi trình duyệt có nhiều tài khoản / mở từ Zalo).
+      var resp;try{resp=await fetch(window.VTVL_API,{method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:action,args:args||{},token:S.token||''})});}
+      catch(err){throw Error(await diagnoseApi_());}
+      var txt=await resp.text();
+      try{r=JSON.parse(txt);}catch(err){throw Error('Máy chủ App chưa mở công khai. Quản trị viên kiểm tra triển khai: Người có quyền truy cập = Bất kỳ ai.');}
+    }else throw Error('Mở ứng dụng bằng đường dẫn chính thức của App.');
+    if(!r.ok)throw Error(r.error);return r.data;
+  }finally{busy(false);if(['login','bootFast','bootAll'].includes(action))console.info('[VTVL] '+action+' '+(Date.now()-t0)+' ms');}
+}
+/** Tải nhanh giao diện đầu tiên; báo cáo/chức năng chuyên sâu tải khi được mở. */
+S.detailed=false;S.detailLoading=null;
+async function reload(){
+  var mode=detailNeeded_(S.page)?'bootAll':'bootFast';
+  var r;try{r=await rpc(mode);}catch(err){if(mode!=='bootFast'||!String(err.message).includes('không được hỗ trợ'))throw err;r=await rpc('bootAll');mode='bootAll';}
+  S.model=r.model;S.report=r.report||null;S.detailed=mode==='bootAll';renderShell();
+}
+function useBoot_(r){
+  if(!r||!r.boot)return false;
+  S.model=r.boot.model;S.report=r.boot.report||null;
+  S.detailed=!!r.boot.detailLoaded||!!r.boot.report;renderShell();return true;
+}
+/** Chỉ những trang cần số liệu/biểu mở rộng mới đọc toàn bộ dữ liệu. */
+function detailNeeded_(page){
+  if(page==='reports'||page==='progress'||page==='review')return true;
+  if(page==='forms'&&staff())return true;
+  return false;
+}
+async function navigate_(page){
+  S.page=page;
+  if(detailNeeded_(page)&&!S.detailed){
+    $('page').innerHTML='<div class="card"><h2>Đang tải dữ liệu chuyên sâu</h2><p class="subtle">Chỉ tải khi mở chức năng này. Các trang tra cứu và chọn vị trí việc làm không phải tải toàn bộ biểu.</p></div>';
+    if(!S.detailLoading)S.detailLoading=rpc('bootAll').then(function(r){
+      S.model=r.model;S.report=r.report;S.detailed=true;
+    }).finally(function(){S.detailLoading=null;});
+    try{await S.detailLoading;}catch(err){msg('Không tải được dữ liệu chuyên sâu: '+err.message,true);return;}
+  }
+  renderShell();
+}
+function canNav(id){
+  if(!staff())return id==='lookup'||id==='forms';
+  if(id==='admin')return has('ADMIN');
+  if(id==='forms')return has('CANHAN')||has('TONGHOP');
+  if(id==='review')return has('DUYET')||has('TONGHOP');
+  return true;
+}
+function renderShell(){
+  $('login').classList.add('hidden');$('shell').classList.remove('hidden');
+  document.querySelectorAll('[data-action=changePassword]').forEach(function(b){b.classList.toggle('hidden',has('ADMIN'));});
+  if($('pickMyPosBtn'))$('pickMyPosBtn').classList.toggle('hidden',!(S.model.user.selfSelect&&(S.model.myCatalog||[]).length));
+  var u=S.model.user;$('userName').textContent=u.name;$('avatar').textContent=u.name.slice(0,2).toUpperCase();$('userRole').textContent=u.roles.map(function(r){return roleNames[r];}).join(' · ');
+  $('nav').innerHTML=navs.filter(function(x){return canNav(x[0]);}).map(function(x){return '<button data-nav="'+x[0]+'" class="'+(S.page===x[0]?'active':'')+'">'+e(!staff()&&x[0]==='forms'?'Đề nghị của tôi':x[0]==='lookup'?'Nhiệm vụ chính & công việc':x[1])+'</button>';}).join('');
+  $('mobileNav').innerHTML=navs.filter(function(x){return canNav(x[0]);}).map(function(x){return '<option value="'+x[0]+'" '+(S.page===x[0]?'selected':'')+'>'+e(!staff()&&x[0]==='forms'?'Đề nghị của tôi':x[0]==='lookup'?'Nhiệm vụ chính & công việc':x[1])+'</option>';}).join('');
+  if(window.LOCAL_PREVIEW)$('previewBanner').innerHTML='<div class="notice warning" style="margin:14px 20px 0">BẢN XEM TRƯỚC CHỈ ĐỌC · Dữ liệu nguồn đã đọc ngày 08/11/2026. Chưa kết nối kê khai, tài khoản hoặc xét duyệt trên Google.</div>';
+  renderPage();
+}
+function title(kicker,name,sub,action){return '<div class="heading"><div><div class="eyebrow">'+e(kicker)+'</div><h1 style="margin-bottom:7px">'+e(name)+'</h1><p class="subtle" style="margin:0">'+e(sub||'')+'</p></div>'+(action||'')+'</div>';}
+function pill(status){return '<span class="tag '+(status==='Đã duyệt'?'green':status==='Chờ duyệt'?'amber':status==='Từ chối'?'red':'')+'">'+e(status)+'</span>';}
+function table(head,rows){return '<div class="table-wrap"><table><thead><tr>'+head.map(function(x){return '<th>'+e(x)+'</th>';}).join('')+'</tr></thead><tbody>'+(rows.length?rows.map(function(row){return '<tr>'+row.map(function(x){return '<td>'+x+'</td>';}).join('')+'</tr>';}).join(''):'<tr><td colspan="'+head.length+'" class="empty">Chưa có dữ liệu trong phạm vi này.</td></tr>')+'</tbody></table></div>';}
+function posName(id){var p=S.model.data.C1.find(function(x){return x.id===id;});return p?p.name:id;}
+function btn(action,label,extra,cls){return '<button data-action="'+action+'" '+(extra||'')+' class="'+(cls||'')+'">'+e(label)+'</button>';}
+/** Nguồn phân quyền độc lập với lần đồng bộ; giữ C1 từ snapshot làm tham khảo khi đã có dữ liệu. */
+function positionCatalog_(){
+  if(Array.isArray(S.model.positionCatalog))return S.model.positionCatalog;
+  return S.model.data&&Array.isArray(S.model.data.C1)?S.model.data.C1:[];
+}
+function positionCheckItems_(items,selected){
+  selected=selected||[];
+  return items.map(function(x){
+    var search=(x.name+' '+x.id).toLocaleLowerCase('vi');
+    return '<label class="vtvl-checkbox" data-search="'+e(search)+'">'+
+      '<input name="positions" type="checkbox" value="'+e(x.id)+'" '+(selected.includes(x.id)?'checked':'')+'><span><b>'+e(x.name)+'</b><br><small>'+e(x.id)+'</small></span></label>';
+  }).join('');
+}
+function filterPositionChecks_(){
+  var field=$('positionSearch');if(!field)return;
+  var q=field.value.toLocaleLowerCase('vi');
+  document.querySelectorAll('#positionChecklist .vtvl-checkbox').forEach(function(el){
+    el.style.display=el.dataset.search.includes(q)?'flex':'none';
+  });
+}
+function updatePositionCount_(){
+  var el=$('positionStatus');if(!el)return;
+  var count=positionCatalog_().length;
+  var selected=document.querySelectorAll('#accountForm input[name="positions"]:checked').length;
+  el.textContent='Nguồn: 6. C1_VTVL · '+count+' vị trí · Đã tích chọn '+selected+' vị trí.';
+}
+
+function renderPage(){
+  var f={overview:overview,lookup:lookup,forms:forms,progress:progress,review:review,reports:reports,admin:admin};
+  if(!canNav(S.page))S.page='lookup';(f[S.page]||overview)();if(S.page==='reports')renderSourceTable('C3');
+}
+function overview(){
+  var d=S.model.data,r=S.model.requests,own=r.filter(function(x){return x.user===S.model.user.id;}),pending=r.filter(function(x){return x.status==='Chờ duyệt';}).length;
+  var direct=(S.model.directWorks||[]),stats=[['Vị trí việc làm',d.C1.length,'Trong phạm vi được phân quyền'],['Nhiệm vụ',d.A1.length,'Danh mục A1 chỉ đọc'],['Công việc',d.A2.length,'Liên kết nhiệm vụ và VTVL'],['Lượt nhập trực tiếp',direct.length,'Ghi ngay vào APP_CONG_VIEC, không phải chờ duyệt']];
+  $('page').innerHTML=title('Không gian làm việc','Tổng quan vị trí việc làm','Tra cứu và bổ sung công việc theo phân công.',btn('reload','↻ Cập nhật'))+
+    '<div class="stats">'+stats.map(function(x){return '<div class="card stat"><div class="label">'+e(x[0])+'</div><div class="value">'+n(x[1])+'</div><small>'+e(x[2])+'</small></div>';}).join('')+'</div>'+
+    '<div class="two"><section class="card"><div class="row"><h2>Phân công của bạn</h2>'+pill('Dữ liệu vận hành')+'</div>'+
+    (S.model.user.positions.length?S.model.user.positions.map(function(id){return '<div class="metric-line"><div><b>'+e(posName(id))+'</b><br><small>'+e(id)+'</small></div><span class="tag">'+(S.model.user.primary===id?'Vị trí chính':'Kiêm nhiệm')+'</span></div>';}).join(''):'<p class="subtle">Tài khoản đang thực hiện vai trò '+e(S.model.user.roles.map(function(r){return roleNames[r];}).join(', '))+'. Quản trị viên phân công tài khoản cá nhân để kê khai.</p>')+
+    '<div class="actions">'+btn('navigate','Tra cứu công việc','data-page="lookup"','primary')+btn('navigate','Kê khai công việc','data-page="forms"')+'</div></section>'+
+    '<section class="card"><h2>Quy trình cập nhật</h2><div class="checklist">'+[['1','Tra cứu','Chọn nhiệm vụ và VTVL được giao.'],['2','Nhập công việc','Chỉ bắt buộc tên công việc và sản phẩm.'],['3','Lưu ngay','Dữ liệu tự ghi vào sheet vận hành, quản trị tự kiểm tra.']].map(function(x){return '<div class="step"><span>'+x[0]+'</span><div><b>'+x[1]+'</b><br><small>'+x[2]+'</small></div></div>';}).join('')+'</div></section></div>'+
+    '<div class="card"><div class="row"><h2>Công việc mới cập nhật</h2><small>'+(S.model.directWorks||[]).length+' lượt nhập trong phạm vi của bạn</small></div>'+table(['Thời gian','Công việc','Tài khoản'],(S.model.directWorks||[]).slice(-5).reverse().map(function(x){return [e(x.updatedAt),e(x.name)+'<br><small>'+e(x.task)+'</small>',e(x.user)];}))+'</div>'+
+    '<p class="subtle">Đồng bộ gần nhất: '+e(S.model.lastSync||'Chưa đồng bộ')+' · Giờ Việt Nam. Cảnh báo kỹ thuật cần được xem xét cùng căn cứ nghiệp vụ.</p>';
+}
+function options(items,value,key,label,empty){
+  return (empty!==undefined?'<option value="">'+e(empty)+'</option>':'')+items.map(function(x){var id=typeof x==='string'?x:x[key],name=typeof x==='string'?x:x[label];return '<option value="'+e(id)+'" '+(id===value?'selected':'')+'>'+e(name)+'</option>';}).join('');
+}
+function scopedAccounts(){
+  return (S.model.accounts||[]).filter(function(x){return x.roles.includes('CANHAN');});
+}
+function scope_(){
+  var d=S.model.data,u=S.model.user,f=S.filters,sub=null,allowed=[];
+  if(has('ADMIN')&&f.account){sub=scopedAccounts().find(function(x){return x.id===f.account;})||null;}
+  var ids=sub?sub.positions:staff()?d.C1.map(function(x){return x.id;}):u.positions;
+  allowed=d.C1.filter(function(x){return ids.includes(x.id);});
+  if(f.position&&!ids.includes(f.position))f.position='';
+  if(!staff()&&!f.position&&allowed.length===1)f.position=allowed[0].id;
+  var selected=f.position?[f.position]:ids;
+  return {sub:sub,allowed:allowed,selected:selected};
+}
+function deputyEditable_(task){var dp=S.model.deputy;return !!(dp&&has('CANHAN')&&!S.filters.account&&dp.chosen.length&&dp.chosen.includes(fieldMap_().known[task]));}
+function canEditWork_(w){return canPropose_(w.position)||deputyEditable_(w.task);}
+function canPropose_(position){
+  return has('CANHAN')&&!(has('ADMIN')&&S.filters.account)&&S.model.user.positions.includes(position);
+}
+function workMeasure_(x){
+  var rows=S.model.data.B1.filter(function(b){return b.work===x.id&&b.position===x.position;});
+  var b=rows.length?rows[0]:null;
+  return {quantity:x.quantity!==undefined&&x.quantity!==null?x.quantity:b?b.quantity:null,
+    minutes:x.minutes!==undefined&&x.minutes!==null?x.minutes:b?b.minutes:null};
+}
+/** Phó Giám đốc: 'mine' = công việc do mình phụ trách, 'staff' = công việc phân giao cho chuyên viên. */
+function depTab_(){var dp=S.model.deputy;if(!dp||S.filters.account)return null;return S.filters.dmode==='staff'?'staff':'mine';}
+function depCounts_(){
+  var dp=S.model.deputy,fm=fieldMap_().known,ch=dp.chosen,own=dp.own,c={mine:0,staff:0};
+  S.model.data.A2.forEach(function(w){var inF=!ch.length||ch.includes(fm[w.task]);if(!inF)return;if(own.includes(w.position))c.mine++;else if(ch.length)c.staff++;});
+  return c;
+}
+function deputyPanel_(){
+  var dp=S.model.deputy,tab=depTab_(),c=depCounts_();
+  var h='<div class="card"><h3 style="margin:0 0 4px">Lĩnh vực phụ trách</h3><p class="subtle" style="margin:0">Tích chọn lĩnh vực Phó Giám đốc phụ trách rồi bấm Lưu.</p>'+
+    '<div class="field-chips">'+dp.fields.map(function(f){return '<label class="check"><input type="checkbox" name="depField" value="'+e(f)+'" '+(dp.chosen.includes(f)?'checked':'')+'>'+e(f)+'</label>';}).join('')+'</div>'+
+    btn('saveMyFields','Lưu lĩnh vực phụ trách')+'</div>'+
+    '<div class="dep-tabs" role="tablist">'+
+      '<button type="button" role="tab" aria-selected="'+(tab==='mine')+'" class="dep-tab'+(tab==='mine'?' active':'')+'" data-action="depTabMine">Công việc do tôi phụ trách<small>'+c.mine+'</small></button>'+
+      '<button type="button" role="tab" aria-selected="'+(tab==='staff')+'" class="dep-tab'+(tab==='staff'?' active':'')+'" data-action="depTabStaff">Công việc giao chuyên viên<small>'+c.staff+'</small></button></div>';
+  if(tab==='staff'){
+    if(!dp.chosen.length)h+='<div class="notice warning">Chọn và lưu lĩnh vực phụ trách để xem công việc đã phân giao cho chuyên viên.</div>';
+    else{
+      var list=dp.chosen.filter(function(f){return (dp.unassigned[f]||[]).length;});
+      h+='<div class="notice'+(list.length?' warning':'')+'" style="font-size:13px">'+(list.length?'<b>VTVL chưa phân công cho chuyên viên:</b><br>'+list.map(function(f){return e(f)+': '+dp.unassigned[f].map(function(p){return e(p.name);}).join(' · ');}).join('<br>'):
+        'Tất cả VTVL trong các lĩnh vực đã chọn đều đã có chuyên viên phụ trách.')+'</div>';
+    }
+  }else if(!dp.chosen.length)h+='<p class="subtle">Chưa chọn lĩnh vực: đang hiện toàn bộ công việc của vị trí Phó Giám đốc.</p>';
+  return h;
+}
+/** Khung tự chọn VTVL (hiện ngay sau đăng nhập nếu tài khoản chưa có VTVL). */
+function myPositionsCard_(first){
+  var cat=S.model.myCatalog||[],own=S.model.user.positions||[];
+  return '<div class="card" id="myPosCard"><h2 style="margin-top:0">'+(first?'Chọn vị trí việc làm của bạn':'Đổi vị trí việc làm')+'</h2>'+
+    '<p class="subtle">Tích vị trí việc làm thực tế bạn đang đảm nhận (có thể chọn thêm vị trí kiêm nhiệm), xác định vị trí chính, rồi bấm Lưu. Quản trị viên có thể đối chiếu phân công trên Google Sheets vận hành.</p>'+
+    '<input id="myPosSearch" placeholder="Tìm nhanh theo tên vị trí…" style="margin-bottom:10px">'+
+    '<div class="position-checklist" id="myPosList">'+cat.map(function(c){return '<label class="check" data-name="'+e((c.name+' '+c.id).toLocaleLowerCase('vi'))+'"><input type="checkbox" name="myPos" value="'+e(c.id)+'" '+(own.includes(c.id)?'checked':'')+'>'+e(c.name)+'</label>';}).join('')+'</div>'+
+    '<label for="myPrimary">Vị trí chính</label><select id="myPrimary"></select>'+
+    '<div class="actions">'+btn('saveMyPositions','Lưu vị trí việc làm','','primary')+'</div></div>';
+}
+function refreshMyPrimary_(){
+  var sel=$('myPrimary');if(!sel)return;var cur=sel.value||S.model.user.primary;
+  var picked=Array.from(document.querySelectorAll('input[name="myPos"]:checked')).map(function(x){return x.value;});
+  sel.innerHTML=picked.length?picked.map(function(id){var c=(S.model.myCatalog||[]).find(function(x){return x.id===id;});return '<option value="'+e(id)+'" '+(id===cur?'selected':'')+'>'+e(c?c.name:id)+'</option>';}).join(''):'<option value="">Chưa chọn vị trí</option>';
+}
+function lookup(){
+  var d=S.model.data,f=S.filters,scope=scope_(),selects='';
+  if(has('ADMIN')){
+    selects+='<div><label for="scopeAccount">Xem theo tài khoản con</label><select id="scopeAccount">'+
+      options(scopedAccounts().map(function(x){return {id:x.id,name:x.name+' ('+x.id+')'};}),f.account,'id','name','Toàn bộ vị trí việc làm')+'</select></div>';
+  }
+  if(scope.allowed.length>1){
+    selects+='<div><label for="scopePosition">Vị trí việc làm được phép xem</label><select id="scopePosition">'+
+      options(scope.allowed.map(function(x){return {id:x.id,name:x.name+' ('+x.id+')'};}),f.position,'id','name','Tất cả vị trí được cấp')+'</select></div>';
+  }else if(scope.allowed.length===1){
+    selects+='<div><label>Vị trí việc làm</label><div class="notice" style="margin:0">'+e(scope.allowed[0].name)+'<br><small>'+e(scope.allowed[0].id)+'</small></div></div>';
+  }
+  var accountNote=scope.sub?'Đang xem theo phân quyền của: '+scope.sub.name+'. Chế độ chỉ đọc; không kê khai thay tài khoản con.':
+    staff()?'Chọn tài khoản con để kiểm tra nhiệm vụ và công việc theo các VTVL được cấp.':
+    'Chọn nhiệm vụ chính để xem công việc và gửi đề nghị của bạn.';
+  var body=title('Danh mục nhiệm vụ','Nhiệm vụ chính & công việc',accountNote);
+  if(selects)body+='<div class="card"><div class="scope-bar">'+selects+'</div></div>';
+  if(has('ADMIN')&&!S.model.lastSync)body+='<div class="notice warning">Chưa đồng bộ dữ liệu nên tài khoản con chưa thấy nhiệm vụ và công việc. Vào <b>Quản trị hệ thống → Đồng bộ dữ liệu</b> để đồng bộ lần đầu.</div>';
+  if(!staff()&&!d.A1.length)body+='<div class="notice warning">Dữ liệu nhiệm vụ chưa được quản trị viên đồng bộ. Bạn vẫn có thể chọn VTVL nếu danh mục C1 đã sẵn sàng.</div>';
+  if(!staff()&&!scope.allowed.length){
+    if(S.model.user.selfSelect&&(S.model.myCatalog||[]).length){
+      body+=myPositionsCard_(true);
+    }else{
+      body+='<div class="notice warning"><b>Chưa tải được vị trí việc làm.</b><br>'+e(S.model.myCatalogError||'Máy chủ chưa trả về danh mục C1 hoặc tài khoản chưa được bật quyền tự chọn.')+'<div class="actions">'+btn('reloadMyCatalog','↻ Tải lại danh mục VTVL','','primary')+'</div></div>';
+    }
+  }
+  if(S.model.deputy&&!scope.sub)body+=deputyPanel_();
+  body+='<div id="taskFlow"></div>';
+  $('page').innerHTML=body;
+  refreshMyPrimary_();
+  renderTaskFlow_();
+}
+function fieldMap_(){
+  var d=S.model.data,known={},order=[];
+  d.LINHVUC.slice().sort(function(a,b){return (a.order||0)-(b.order||0);}).forEach(function(x){if(!known[x.task]){known[x.task]=x.field;order.push(x.task);}});
+  d.A1.forEach(function(x){if(!known[x.id]){known[x.id]='Nhiệm vụ khác';order.push(x.id);}});
+  return {known:known,order:order};
+}
+function scopedWorks_(scope){
+  var d=S.model.data,tab=depTab_();
+  if(tab){
+    var fm=fieldMap_().known,dp=S.model.deputy,ch=dp.chosen,own=dp.own;
+    return d.A2.filter(function(w){
+      var inF=!ch.length||ch.includes(fm[w.task]);
+      return tab==='mine'?(inF&&own.includes(w.position)):(ch.length&&inF&&!own.includes(w.position));
+    });
+  }
+  return d.A2.filter(function(w){return scope.selected.includes(w.position);});
+}
+function holderText_(pos){var h=(S.model.deputy&&S.model.deputy.holders[pos])||[];return h.length?'Chuyên viên: '+h.join(', '):'Chưa phân công chuyên viên';}
+/** Danh sách công việc của một nhiệm vụ (hiện ngay dưới nhiệm vụ khi bấm mở). */
+function worksHtml_(task,works,scope){
+  var staffTab=depTab_()==='staff';
+  var canAdd=staffTab?deputyEditable_(task.id):has('CANHAN')&&scope.selected.some(function(x){return canPropose_(x);}),html='<div class="acc-works">';
+  if(!works.length)html+='<div class="empty">Chưa có công việc thuộc vị trí đang xem.'+(canAdd?' Nếu đây là nhiệm vụ thực tế của bạn, hãy bấm Thêm mới bên dưới.':'')+'</div>';
+    works.forEach(function(w,i){
+      var m=workMeasure_(w),edit=canEditWork_(w);
+      var other=staffTab?'<br><small><b>VTVL: '+e(posName(w.position))+'</b> · '+e(holderText_(w.position))+'</small>':scope.selected.length>1?'<small>VTVL: '+e(posName(w.position))+'</small>':'';
+      var statuses=scope.sub?S.model.requests.filter(function(x){return x.type==='A2'&&x.user===scope.sub.id&&x.work===w.id;}):[];
+      var last=statuses.length?statuses[statuses.length-1]:null;
+      html+='<div class="work-item">'+
+        '<div class="work-head"><span class="work-number">'+(i+1)+'</span><div style="flex:1;text-align:left"><b>'+e(w.name)+'</b><br><small>'+e(w.id)+'</small> '+other+'</div></div>'+
+        '<div class="work-info"><span>Sản phẩm: '+e(w.product||'Chưa kê khai')+'</span><span>Đơn vị: '+e(w.unit||'—')+'</span>'+
+        '<span>SP/năm: '+(m.quantity===null?'—':n(m.quantity))+'</span><span>Phút/SP: '+(m.minutes===null?'—':n(m.minutes))+'</span>'+
+        (last?'<span>Đề nghị: '+e(last.status)+'</span>':'')+'</div>'+
+        (w.directInput?'<div class="work-stamp">'+(w.changeType==='Thêm mới'?'＋ Mới thêm':'✎ Đã cập nhật')+' · '+e(w.updatedAt)+(w.user?' · '+e(w.user):'')+'</div>':'')+
+        '<div class="work-actions">'+btn('detail','Xem chi tiết','data-id="'+e(w.id)+'"')+(edit?btn('editScopedWork','✎ Sửa công việc','data-id="'+e(w.id)+'"','primary'):'')+'</div></div>';
+    });
+    var requestUser=scope.sub?scope.sub.id:!staff()?S.model.user.id:'';
+    var pendingWork=[]; // A2 is now written directly to APP_CONG_VIEC, not queued for approval.
+    if(pendingWork.length){
+      html+='<h3 style="margin-top:22px">Đề nghị đang xử lý</h3>';
+      pendingWork.slice().reverse().forEach(function(r){html+='<button type="button" class="work-item" data-action="requestDetail" data-id="'+e(r.id)+'">'+
+        '<b>'+e(r.values.name||'Công việc mới')+'</b><br><small>'+e(r.status)+' · '+e(r.userName||r.user)+' · '+e(r.work)+'</small></button>';});
+    }
+    if(canAdd){
+      html+='<div class="add-work-footer">'+btn('addScopedWork','＋ Thêm công việc mới vào nhiệm vụ này','','primary')+
+        '<p class="subtle" style="margin:9px 0 0">Bắt buộc: tên công việc và sản phẩm. Các trường khác có thể để trống.</p></div>';
+    }
+    if(staff()&&!canAdd)html+='<p class="subtle" style="margin-top:14px">Đang ở chế độ quản lý/tra cứu, không gửi yêu cầu thay tài khoản con.</p>';
+  return html+'</div>';
+}
+function renderTaskFlow_(){
+  var target=$('taskFlow');if(!target)return;
+  var d=S.model.data,scope=scope_(),fm=fieldMap_(),tab=depTab_(),dep=!!(tab&&S.model.deputy.chosen.length),works=scopedWorks_(scope);
+  if(!staff()&&!scope.selected.length){target.innerHTML='<div class="notice">Hãy chọn vị trí việc làm của bạn ở phía trên để xem nhiệm vụ và công việc tương ứng.</div>';return;}
+  if(tab==='staff'&&!dep){target.innerHTML='';return;}
+  var q=(S.filters.q||'').toLocaleLowerCase('vi').trim(),open=S.filters.task||'';
+   var matchingTasks=Object.create(null);
+   if(q){works.forEach(function(w){if([w.id,w.name,w.product,w.unit].join(' ').toLocaleLowerCase('vi').includes(q))matchingTasks[w.task]=true;});}
+  S.openFields=S.openFields||{};S.moreTasks=S.moreTasks||{};
+  if(open&&fm.known[open])S.openFields[fm.known[open]]=true;
+  var byTask={};works.forEach(function(w){(byTask[w.task]=byTask[w.task]||[]).push(w);});
+  var fields={},order=[];
+  fm.order.forEach(function(id){
+    var t=d.A1.find(function(x){return x.id===id;});if(!t)return;var f=fm.known[id];
+    if(dep&&!S.model.deputy.chosen.includes(f))return;
+    if(q&&![id,t.name,f].join(' ').toLocaleLowerCase('vi').includes(q)&&!matchingTasks[id])return;
+    if(!fields[f]){fields[f]=[];order.push(f);}fields[f].push({task:t,works:byTask[id]||[]});
+  });
+  var mineCount=function(f){return fields[f].filter(function(r){return r.works.length;}).length;};
+  order.sort(function(a,b){return (mineCount(b)>0)-(mineCount(a)>0);});
+  var html='<div class="card"><label for="taskSearch">Tìm nhiệm vụ hoặc công việc</label><input id="taskSearch" value="'+e(S.filters.q)+'" placeholder="Tên/mã nhiệm vụ, tên công việc hoặc sản phẩm…">'+
+    '<p class="subtle" style="margin-top:10px">Bấm vào <b>lĩnh vực</b> để xem nhiệm vụ chính, bấm vào <b>nhiệm vụ</b> để xem công việc.</p></div>';
+  if(!order.length)html+='<div class="card empty">'+(dep?(tab==='staff'?'Chưa có công việc giao chuyên viên trong các lĩnh vực đã chọn.':'Chưa có công việc của bạn trong các lĩnh vực đã chọn.'):'Không tìm thấy nhiệm vụ.')+'</div>';
+  order.forEach(function(f){
+    var list=fields[f],mine=list.filter(function(r){return r.works.length;}),rest=list.filter(function(r){return !r.works.length;});
+    var isOpen=!!(S.openFields[f]||q),un=tab==='staff'&&S.model.deputy.unassigned[f]||[];
+    html+='<section class="card acc"><button type="button" class="acc-head'+(isOpen?' open':'')+(mine.length?'':' zero')+'" data-action="toggleField" data-id="'+e(f)+'" aria-expanded="'+isOpen+'">'+
+      '<span class="chev">›</span><span>'+e(f)+'</span><small>'+mine.length+' nhiệm vụ</small></button>';
+    if(isOpen){
+      html+='<div class="acc-body">';
+      if(un.length)html+='<div class="unassigned"><b>VTVL chưa phân công:</b> '+un.map(function(p){return e(p.name);}).join(' · ')+'</div>';
+      var shown=mine.concat(S.moreTasks[f]||q||!mine.length?rest:[]);
+      shown.forEach(function(r){
+        var to=open===r.task.id;
+        html+='<div class="acc-task'+(to?' open':'')+'" data-task-id="'+e(r.task.id)+'"><button type="button" class="acc-task-head" data-action="toggleTask" data-id="'+e(r.task.id)+'" aria-expanded="'+to+'">'+
+          '<span class="task-code">'+e(r.task.id)+'</span><b>'+e(r.task.name)+'</b><small>'+r.works.length+' công việc</small></button>'+(to?worksHtml_(r.task,r.works,scope):'')+'</div>';
+      });
+      if(rest.length&&mine.length&&!S.moreTasks[f]&&!q)html+='<button type="button" class="acc-more" data-action="moreTasks" data-id="'+e(f)+'">＋ Xem thêm '+rest.length+' nhiệm vụ khác của lĩnh vực ('+(tab==='staff'?'chưa giao chuyên viên':'chưa có công việc của bạn')+')</button>';
+      html+='</div>';
+    }
+    html+='</section>';
+  });
+  target.innerHTML=html;
+  if(open){var el=document.querySelector('[data-task-id="'+(window.CSS&&CSS.escape?CSS.escape(open):open)+'"]');if(el&&el.scrollIntoView)el.scrollIntoView({block:'nearest'});}
+}
+function pickAddPosition_(){
+  var scope=scope_(),positions=scope.selected.filter(function(id){return canPropose_(id);});
+  if(depTab_()==='staff'&&deputyEditable_(S.filters.task)){var own=S.model.user.positions||[],inField={};scopedWorks_(scope).forEach(function(w){inField[w.position]=true;});positions=S.model.data.C1.map(function(c){return c.id;}).filter(function(id){return !own.includes(id)&&inField[id];});if(!positions.length)positions=S.model.data.C1.map(function(c){return c.id;}).filter(function(id){return !own.includes(id);});}
+  if(!positions.length){msg('Tài khoản này chưa được cấp VTVL để thêm công việc.',true);return;}
+  if(positions.length===1){openWorkProposal_(null,S.filters.task,positions[0]);return;}
+  modal('Chọn VTVL cho công việc mới','<p>Chọn VTVL mà công việc mới sẽ thuộc về:</p>'+positions.map(function(id){return '<p>'+btn('addForPosition',posName(id),'data-id="'+e(id)+'"')+'</p>';}).join(''),btn('close','Đóng'));
+}
+function modal(title,body,footer){$('modalTitle').textContent=title;$('modalBody').innerHTML=body;$('modalFooter').innerHTML=footer||'';if(!$('dialog').open)$('dialog').showModal();}
+function detail(id){
+  var x=S.model.data.A2.find(function(w){return w.id===id;});if(!x)return;
+  var metric=workMeasure_(x);
+  var fields=[['Mã công việc',x.id],['Mã nhiệm vụ',x.task],['Vị trí việc làm',posName(x.position)],['Tên công việc',x.name],['Sản phẩm',x.product],['Đơn vị tính',x.unit],['Chất lượng',x.quality],['Số sản phẩm/năm',metric.quantity===null?'Chưa có':metric.quantity],['Trung bình phút/1 sản phẩm',metric.minutes===null?'Chưa có':metric.minutes],['Căn cứ',x.basis]];
+  var b1=S.model.data.B1.filter(function(b){return b.work===id&&b.position===x.position;});
+  var footer=canEditWork_(x)?btn('editScopedWork','✎ Sửa công việc này','data-id="'+e(id)+'"','primary')+btn('addFromDetail','＋ Thêm công việc mới cùng nhiệm vụ','data-id="'+e(x.task)+'"')+btn('close','Đóng'):btn('close','Đóng');
+  modal('Chi tiết công việc',table(['Trường thông tin','Nội dung'],fields.map(function(p){return [e(p[0]),e(p[1])];}))+
+    '<h3 style="margin-top:20px">Khối lượng B1 từ nguồn · '+b1.length+' dòng</h3>'+table(['Kỳ','Sản lượng','Phút/SP','Tổng giờ tính lại'],b1.map(function(b){return [e(b.period),n(b.quantity),n(b.minutes),n(b.hours)];}))+
+    (x.approvalConflict?'<div class="notice warning">Nguồn đã thay đổi so với lúc phê duyệt. Nội dung được duyệt vẫn được giữ để đối chiếu.</div>':''),footer);
+}
+function requestTable(list,reviewMode){
+  return table(['Biểu / thời điểm','Công việc / vị trí','Người kê khai','Trạng thái',''],list.map(function(r){return ['<b>'+e(r.type)+'</b><br><small>'+e(r.updatedAt)+'</small>','<div style="min-width:230px">'+e(r.values.name||r.work||posName(r.position))+'</div><small>'+e(r.period)+'</small>',e(r.userName||r.user),pill(r.status),btn(reviewMode?'reviewDetail':'requestDetail','Chi tiết','data-id="'+e(r.id)+'"')];}));
+}
+function forms(){
+  if(!staff()){
+    var own=(S.model.directWorks||[]).filter(function(r){return r.user===S.model.user.id;}).slice().reverse();
+    $('page').innerHTML=title('Công việc đã nhập','Nhật ký thêm và sửa công việc','Công việc được ghi ngay vào sheet vận hành, không chờ phê duyệt.',btn('navigate','Xem nhiệm vụ chính','data-page="lookup"','primary'))+
+      '<div class="card">'+table(['Thời gian','Nhiệm vụ / vị trí','Tên công việc','Thao tác'],own.map(function(r){return [e(r.updatedAt),e(r.task)+'<br><small>'+e(posName(r.position))+'</small>',e(r.name)+'<br><small>'+e(r.product)+'</small>',e(r.changeType)];}))+'</div>';
+    return;
+  }
+  var types=[['B1','Khối lượng'],['B2','Tác động'],['C2','Năng lực']];if(has('TONGHOP'))types.push(['TONGHOP','Biểu tổng hợp']);
+  var type=S.formType==='A2'?'B1':S.formType,list=S.model.requests.filter(function(r){return r.user===S.model.user.id&&r.type===type;}).slice().reverse();
+  var hints={A2:'Đề nghị bổ sung hoặc chỉnh sửa công việc. Nội dung được áp dụng sau phê duyệt.',B1:'Sản lượng × phút/sản phẩm ÷ 60 + giờ bổ sung. Nhập nguồn thực tế; không ép tổng giờ.',B2:'Chỉ kê khai tác động có B1 cơ sở và bằng chứng. Phạm vi phải được kiểm tra không trùng.',C2:'Rà soát trách nhiệm, năng lực và căn cứ mô tả theo vị trí được phân công.',TONGHOP:'Chuyên viên tổng hợp lập điều chỉnh có căn cứ cho C1, danh mục sản phẩm, C3, D1, D2 và dự báo. Trường tính toán được khóa.'};
+  $('page').innerHTML=title('Kê khai','Hồ sơ kê khai của tôi','Lưu nháp → gửi xét duyệt → theo dõi kết quả.',btn('newForm','+ Tạo bản kê khai','','primary'))+
+    '<div class="actions" style="margin:0 0 18px">'+types.map(function(x){return '<button data-type="'+x[0]+'" class="'+(x[0]===type?'primary':'')+'">'+x[0]+' · '+e(x[1])+'</button>';}).join('')+'</div>'+
+    '<div class="notice">'+e(hints[type])+'</div><div class="card">'+requestTable(list,false)+'</div>';
+}
+function input(name,label,value,kind,help){
+  var html=kind==='area'?'<textarea name="'+e(name)+'">'+e(value)+'</textarea>':'<input name="'+e(name)+'" value="'+e(value)+'" '+(kind==='number'?'type="number" min="0" step="any"':'type="text"')+'>';
+  return '<div><label>'+e(label)+'</label>'+html+(help?'<small>'+e(help)+'</small>':'')+'</div>';
+}
+var summaryFields={C1:['Tên VTVL','Loại nhân lực','Quyết định','Giờ chuẩn PP2','Căn cứ xác định quỹ giờ','Trạng thái','Giờ riêng được xác nhận','Xác nhận giờ riêng','Chế độ làm việc'],DM:['Tên/loại sản phẩm','Khối/ngành/lĩnh vực','Nhóm I–VI (nếu áp dụng)','Phút/SP chuẩn','Văn bản/nguồn xác nhận','Trạng thái','Cơ quan xác nhận','Ngày hiệu lực','Phạm vi áp dụng/ghi chú'],C3:['Phương pháp','Người PP1','Người PP3 (ước lượng, cần giải trình)','Nguồn/giải trình','Trạng thái'],D1:['Loại nhân lực','Giờ dành cho VTVL','Giờ việc khác','Nơi tính BC','Nguồn','Trạng thái','Giờ riêng theo chế độ'],D2:['Biên chế được giao theo đúng cấp','Điều chuyển/bố trí lại','Nguồn/giải trình','Trạng thái','Văn bản thẩm định/quyết định (số, ngày, cơ quan)'],DUBAO:['Biến động so C3 (+/− người)','Nội dung thay đổi / xác nhận không đổi','Căn cứ nguồn và thời điểm','Trạng thái xác nhận','Ghi chú đầu mối']};
+function proposalSixInput_(name,label,value,isNumber){
+  var v=value===null||value===undefined?'':value;
+  if(name==='name'||name==='product'||name==='quality')return '<div><label for="p_'+name+'">'+e(label)+(name==='name'||name==='product'?' *':'')+'</label><textarea id="p_'+name+'" name="'+name+'" maxlength="3000" rows="3" '+(name==='name'||name==='product'?'required':'')+'>'+e(v)+'</textarea></div>';
+  return '<div><label for="p_'+name+'">'+e(label)+'</label><input id="p_'+name+'" name="'+name+'" value="'+e(v)+'" '+
+    (isNumber?'type="number" min="0" step="any" inputmode="decimal"':'type="text" maxlength="100"')+'></div>';
+}
+function openWorkProposal_(workId,taskId,positionId,record){
+  if(!has('CANHAN')){msg('Chỉ tài khoản con được phân công VTVL mới có quyền gửi đề nghị.',true);return;}
+  var d=S.model.data,work=d.A2.find(function(x){return x.id===(workId||(record&&record.work));});
+  var task=record?record.task:(work?work.task:taskId||S.filters.task);
+  var position=record?record.position:(work?work.position:positionId||S.filters.position);
+  var allowed=(S.model.user.positions||[]).slice();if(deputyEditable_(task))S.model.data.C1.forEach(function(c){if(!allowed.includes(c.id))allowed.push(c.id);});
+  if(!task||!d.A1.some(function(x){return x.id===task})){msg('Cần chọn một nhiệm vụ chính A1 trước khi bổ sung công việc.',true);return;}
+  if(!position||!allowed.includes(position)){msg('Cần chọn VTVL được quản trị viên cấp quyền.',true);return;}
+  if(work&&(work.task!==task||work.position!==position)){msg('Công việc không thuộc nhiệm vụ/VTVL được chọn.',true);return;}
+  var p=d.A1.find(function(x){return x.id===task;});
+  var base=work?workMeasure_(work):{quantity:'',minutes:''};
+  var values=record?record.values:work||{},qty=record?values.quantity:(work&&work.quantity!==undefined?work.quantity:base.quantity),mins=record?values.minutes:(work&&work.minutes!==undefined?work.minutes:base.minutes);
+  var period=record?record.period:((S.report&&S.report.periods[0])||String(new Date().getFullYear()));
+  S.edit={type:'A2',id:record&&record.id,version:record&&record.version,
+    nonce:record?record.nonce:(window.crypto&&crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random()),
+    record:record,position:position,baseHash:work?(work.effectiveHash||work.sourceHash||''):''};
+  var hidden='<input type="hidden" name="position" value="'+e(position)+'"><input type="hidden" name="task" value="'+e(task)+'">'+
+    '<input type="hidden" name="work" value="'+e(work?work.id:record?record.work:'')+'">'+
+    '<input type="hidden" name="period" value="'+e(period)+'"><input type="hidden" name="basis" value="'+e(values.basis||work&&work.basis||'')+'">'+
+    '<input type="hidden" name="implementation" value="'+e(values.implementation||'Đang thực hiện')+'">';
+  var form='<div class="notice"><b>Nhiệm vụ:</b> '+e(p.name)+'<br><b>Vị trí:</b> '+e(posName(position))+'</div>'+
+    (work?'<div class="notice warning">Bạn đang sửa công việc <b>'+e(work.id)+'</b>. Nội dung sau khi lưu được cập nhật ngay vào danh sách công việc.</div>':
+     '<div class="notice">Thêm công việc mới: sau khi lưu sẽ xuất hiện ngay trong sheet vận hành và ứng dụng.</div>')+
+    '<form id="declaration">'+hidden+'<div class="grid2">'+
+    proposalSixInput_('name','Tên công việc',values.name,false)+
+    proposalSixInput_('product','Sản phẩm',values.product,false)+
+    proposalSixInput_('unit','Đơn vị tính',values.unit,false)+
+    proposalSixInput_('quality','Chất lượng',values.quality,false)+
+    proposalSixInput_('quantity','Số sản phẩm/năm',qty,true)+
+    proposalSixInput_('minutes','Trung bình phút/1 sản phẩm',mins,true)+'</div>'+
+    '<div id="workCalculation" class="notice" style="margin-top:16px">Chỉ cần nhập Tên công việc và Sản phẩm. Các trường khác được phép để trống. Chỉ tính giờ khi đã có cả sản lượng và phút/SP.</div>'+
+    '<details><summary>Giải trình bổ sung (không bắt buộc)</summary>'+input('reason','Lý do / thông tin bổ sung',record?record.reason:(work&&work.reason||''),'area')+'</details>'+
+    (record&&record.status==='Yêu cầu bổ sung'?'<label class="check"><input type="checkbox" name="rebase">Tôi đã đối chiếu dữ liệu hiện tại để cập nhật đề nghị theo phiên bản mới.</label>':'')+'</form>';
+  modal(work?'Sửa công việc':'Thêm công việc mới',form,
+    btn('sendForm','Lưu công việc','data-save="1"','primary')+btn('close','Hủy'));
+}
+function openForm(type,record,workId,positionId,tableKey,rowId){
+  if(type==='A2'&&has('CANHAN'))return openWorkProposal_(workId,(record&&record.task)||S.filters.task,positionId,record);
+  var d=S.model.data,own=S.model.user.positions,eligible=type==='TONGHOP'||type==='A2'&&has('TONGHOP')?d.C1:d.C1.filter(function(x){return own.includes(x.id);});
+  if(!eligible.length){msg('Tài khoản cần được phân công vị trí và quyền kê khai cá nhân.',true);return;}
+  var work=d.A2.find(function(x){return x.id===(workId||(record&&record.work));}),position=positionId||(record&&record.position)||(work&&work.position)||S.filters.position||eligible[0].id;
+  if(!eligible.some(function(x){return x.id===position;}))position=eligible[0].id;
+  var v=record?record.values:{},period=record?record.period:((S.report&&S.report.periods[0])||String(new Date().getFullYear()));
+  S.edit={type:type,id:record&&record.id,version:record&&record.version,nonce:record?record.nonce:(window.crypto&&crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random()),record:record,position:position};
+  var top='<div class="notice">Các trường nội dung được kiểm tra khi gửi duyệt. Chỉ nhập số liệu và căn cứ đang có; có thể lưu nháp để hoàn thiện.</div><form id="declaration"><div class="grid2">'+
+    '<div><label>Vị trí việc làm</label><select name="position" id="formPosition">'+options(eligible,position,'id','name')+'</select></div>'+input('period','Kỳ thống kê',period,'text','Năm hoặc dd/mm/yyyy – dd/mm/yyyy')+'</div>';
+  if(type==='A2'||type==='B1'||type==='B2'){
+    var works=d.A2.filter(function(x){return x.position===position;});
+    top+='<label>Công việc</label><select name="work" id="formWork">'+options(works.map(function(x){return {id:x.id,name:x.id+' · '+x.name};}),work?work.id:'','id','name',type==='A2'?'+ Bổ sung công việc mới':'Chọn công việc')+'</select>';
+  }
+  if(type==='A2'){
+    var tasks=d.A1,selectedTask=record?record.task:work?work.task:S.filters.task;
+    top+='<label>Nhiệm vụ A1</label><select name="task">'+options(tasks.map(function(x){return {id:x.id,name:x.id+' · '+x.name};}),selectedTask,'id','name','Chọn nhiệm vụ')+'</select>';
+    v=record?v:work||{};top+='<label>Trạng thái triển khai</label><select name="implementation">'+options(['Đang thực hiện','Dự kiến/chưa triển khai'],v.implementation||'Đang thực hiện')+'</select>';
+    if(work)top+='<details><summary>Xem nội dung hiện tại để đối chiếu</summary>'+table(['Trường','Hiện tại'],['name','product','unit','quality','basis'].map(function(k){return [e(k),e(work[k])];}))+'</details>';
+    top+='<div class="grid2">'+input('name','Tên công việc',v.name,'area')+input('product','Sản phẩm',v.product,'area')+input('unit','Đơn vị tính',v.unit)+input('quantity','Số sản phẩm/năm',v.quantity,'number')+input('minutes','Thời gian thực hiện (phút/SP)',v.minutes,'number')+input('quality','Chất lượng',v.quality,'area')+input('basis','Căn cứ',v.basis,'area')+'</div>';
+  }else if(type==='B1'){
+    top+='<div class="grid2">'+input('quantity','Số sản phẩm/năm',v.quantity,'number')+input('minutes','Phút trung bình/sản phẩm',v.minutes,'number')+input('additional','Giờ bổ sung',v.additional===undefined?0:v.additional,'number')+input('additionalSource','Căn cứ giờ bổ sung',v.additionalSource,'area')+input('quantitySource','Nguồn sản lượng',v.quantitySource,'area')+input('timeSource','Nguồn thời gian',v.timeSource,'area')+'</div><div class="notice" id="b1Calculation">Tổng giờ được tính từ số liệu kê khai.</div>';
+  }else if(type==='B2'){
+    var bases=d.B1.filter(function(x){return x.position===position&&(!work||x.work===work.id);}).map(function(x){return {id:x.id,name:'Nguồn · '+x.work+' · '+x.period};}).concat(S.model.requests.filter(function(x){return x.type==='B1'&&x.status==='Đã duyệt'&&x.position===position;}).map(function(x){return {id:x.id,name:'Đã duyệt · '+x.work+' · '+x.user};}));
+    top+='<label>Bản ghi B1 cơ sở</label><select name="basisB1">'+options(bases,v.basisB1,'id','name','Chọn cơ sở B1')+'</select><div class="grid2">'+input('stage','Công đoạn',v.stage)+input('productScope','Phạm vi sản phẩm',v.productScope)+input('coverage','Phạm vi áp dụng không trùng',v.coverage,'area')+input('evidence','Nguồn/bằng chứng',v.evidence,'area')+input('quantity','Sản phẩm áp dụng',v.quantity,'number')+input('before','Phút trước',v.before,'number')+input('after','Phút sau',v.after,'number')+input('newHours','Giờ việc mới',v.newHours===undefined?0:v.newHours,'number')+'</div>';
+  }else if(type==='C2'){
+    if(!record){var c=d.C2.find(function(x){return x.position===position;});v=c||{};}
+    top+='<div class="grid2">'+input('responsibility','Trách nhiệm',v.responsibility,'area')+input('general','Năng lực chung',v.general,'area')+input('professional','Chuyên môn',v.professional,'area')+input('leadership','Năng lực lãnh đạo / không áp dụng',v.leadership,'area')+input('basis','Căn cứ',v.basis,'area')+input('descriptionSource','Nguồn bản mô tả',v.descriptionSource,'area')+'</div>';
+  }else if(type==='TONGHOP'){
+    tableKey=tableKey||v.table||'C3';var rows=d[tableKey].filter(function(x){return tableKey==='DM'||(x.position||x.id)===position;});rowId=rowId||v.rowId||(rows[0]&&rows[0].id)||'';
+    var raw=rows.find(function(x){return x.id===rowId;});raw=raw?raw.raw:{};
+    top+='<div class="grid2"><div><label>Biểu</label><select name="table" id="summaryTable">'+options(Object.keys(summaryFields),tableKey)+'</select></div><div><label>Khóa dòng nguồn</label><select name="rowId" id="summaryRow">'+options(rows.map(function(x){return {id:x.id,name:x.id};}),rowId,'id','name')+'</select></div></div><div class="notice warning">Các trường định danh và kết quả tự tính không được nhập đè. Ghi căn cứ cho điều chỉnh và gửi người có thẩm quyền duyệt.</div><div class="grid2">'+summaryFields[tableKey].map(function(k){return input('patch:'+k,k,v.patch&&v.patch[k]!==undefined?v.patch[k]:raw[k],'area');}).join('')+'</div>'+input('basis','Căn cứ/giải trình chung',v.basis,'area');
+  }
+  top+=input('reason','Lý do / thông tin bổ sung',record?record.reason:'','area')+(record&&record.status==='Yêu cầu bổ sung'?'<label class="check"><input type="checkbox" name="rebase">Tôi đã đối chiếu dữ liệu hiện tại để cập nhật đề nghị theo phiên bản mới.</label>':'')+'</form>';
+  modal('Kê khai '+type+(record?' · '+record.status:''),top,btn('saveDraft','Lưu nháp','data-save="1"')+btn('sendForm','Gửi xét duyệt','data-save="1"','primary'));
+}
+async function saveForm(mode){
+  var f=$('declaration'),v=Object.fromEntries(new FormData(f)),edit=S.edit,values={};
+  Object.keys(v).forEach(function(k){if(!['position','period','work','task','reason'].includes(k))values[k]=v[k];});
+  if(edit.type==='A2'&&has('CANHAN')){
+    if(!f.reportValidity())return;
+    var r=await rpc('saveWork',{nonce:edit.nonce,position:v.position,task:v.task,work:v.work,baseHash:edit.baseHash,reason:v.reason||'',values:values});
+    $('dialog').close();msg('Đã '+(r.created?'thêm':'cập nhật')+' công việc. Danh sách đã được cập nhật ngay, không cần chờ duyệt.');
+    S.filters.task=v.task;S.filters.q='';if((S.model.user.positions||[]).includes(v.position)&&depTab_()!=='staff')S.filters.position=v.position;await reload();return;
+  }
+  if(edit.type==='TONGHOP'){values.patch={};Object.keys(values).forEach(function(k){if(k.startsWith('patch:')){values.patch[k.slice(6)]=values[k];delete values[k];}});}
+  var r=await rpc('save',{type:edit.type,id:edit.id,version:edit.version,nonce:edit.nonce,position:v.position,period:v.period,work:v.work,task:v.task,reason:v.reason,values:values,mode:mode,rebase:v.rebase==='on'});
+  edit.id=r.id;edit.version=r.version;$('dialog').close();msg(mode==='send'?'Đã gửi xét duyệt.':'Đã lưu nháp.');await reload();
+}
+function requestDetail(id,isReview){
+  var r=S.model.requests.find(function(x){return x.id===id;});if(!r)return;
+  var labels={name:'Tên công việc',product:'Sản phẩm',unit:'Đơn vị tính',quality:'Chất lượng',basis:'Căn cứ',minutes:'Phút/SP',quantity:'Sản lượng',additional:'Giờ bổ sung',quantitySource:'Nguồn sản lượng',timeSource:'Nguồn thời gian',hours:'Tổng giờ kê khai',reduced:'Giờ giảm',net:'Tác động ròng',responsibility:'Trách nhiệm',general:'Năng lực chung',professional:'Chuyên môn',leadership:'Lãnh đạo',descriptionSource:'Nguồn mô tả'};
+  var before=r.before&&r.before.values?r.before.values:r.before||{};
+  var rows=Object.keys(r.values).map(function(k){var v=r.values[k];return [e(labels[k]||k),e(typeof before[k]==='object'?JSON.stringify(before[k]):before[k]),e(typeof v==='object'?JSON.stringify(v):v)];});
+  var body='<div class="row"><div><b>'+e(posName(r.position))+'</b><br><small>'+e(r.userName)+' · '+e(r.period)+'</small></div>'+pill(r.status)+'</div><p class="subtle">Mã đề nghị: '+e(r.id)+'</p>'+table(['Trường','Thông tin cũ','Nội dung kê khai'],rows)+
+    '<p style="margin-top:17px"><b>Lý do:</b> '+e(r.reason)+'</p>'+(r.reviewNote?'<div class="notice">'+e(r.reviewNote)+'</div>':'')+
+    '<details><summary>Lịch sử xử lý ('+(r.history||[]).length+' lần)</summary>'+table(['Thời gian','Người thực hiện','Thay đổi','Ý kiến'],(r.history||[]).map(function(h){return [e(h.at),e(h.actor),e(h.from)+' → '+e(h.to),e(h.reason)];}))+'</details>';
+  var footer=btn('close','Đóng');
+  if(r.user===S.model.user.id&&['Nháp','Yêu cầu bổ sung'].includes(r.status))footer=btn('editRequest','Tiếp tục kê khai','data-id="'+e(r.id)+'"','primary')+footer;
+  if(isReview&&r.status==='Chờ duyệt'&&r.user!==S.model.user.id&&(has('DUYET')||has('TONGHOP'))){
+    body+='<label for="reviewNote">Ý kiến xét duyệt (bắt buộc)</label><textarea id="reviewNote"></textarea>';
+    if(r.type==='B2')body+='<label for="overlapNote">Kết quả kiểm tra phạm vi tác động B2 không trùng</label><textarea id="overlapNote" placeholder="Nêu phạm vi, nguồn và cách đối chiếu B1/B2 đã duyệt"></textarea>';
+    footer=(has('DUYET')?btn('reviewApprove','Phê duyệt','data-id="'+e(r.id)+'" data-review="1"','primary')+btn('reviewReject','Từ chối','data-id="'+e(r.id)+'" data-review="1"','danger'):'')+btn('reviewReturn','Yêu cầu bổ sung','data-id="'+e(r.id)+'" data-review="1"');
+  }
+  modal('Chi tiết '+r.type,body,footer);
+}
+async function submitReview(id,decision){
+  var r=S.model.requests.find(function(x){return x.id===id;});
+  await rpc('review',{id:r.id,type:r.type,version:r.version,decision:decision,note:$('reviewNote').value,overlapNote:$('overlapNote')?$('overlapNote').value:''});
+  $('dialog').close();msg('Đã lưu kết quả xử lý.');await reload();
+}
+function review(){
+  var list=S.model.requests.filter(function(x){return x.status==='Chờ duyệt';}).slice().reverse();
+  $('page').innerHTML=title('Phối hợp xử lý','Kiểm tra & xét duyệt','Nội dung được áp dụng vào dữ liệu vận hành khi người có thẩm quyền duyệt.')+
+    '<div class="notice">'+(has('DUYET')?'Bạn có quyền phê duyệt, từ chối hoặc trả bổ sung.':'Chuyên viên tổng hợp có thể trả bổ sung. Quyền phê duyệt được cấp riêng cho người có thẩm quyền.')+' Hệ thống chặn tự duyệt.</div><div class="card"><h2>'+list.length+' bản chờ xử lý</h2>'+requestTable(list,true)+'</div>'+
+    '<details class="card"><summary>Các bản đã xử lý</summary>'+requestTable(S.model.requests.filter(function(r){return ['Đã duyệt','Từ chối','Yêu cầu bổ sung'].includes(r.status);}).slice().reverse(),true)+'</details>';
+}
+function progress(){
+  var r=S.report,people=r.progress,submitted=people.filter(function(x){return x.submitted>0;}).length;
+  $('page').innerHTML=title('Theo dõi','Tiến độ kê khai','Mỗi người được đếm một lần, kể cả khi thực hiện nhiều vị trí.')+
+    '<div class="two"><div class="card"><div class="row"><h2>Người đã nhập hoặc gửi dữ liệu</h2><b>'+submitted+' / '+people.length+'</b></div><div class="progress"><span style="width:'+(people.length?submitted/people.length*100:0)+'%"></span></div><p class="subtle">Đã gửi là đã có ít nhất một bản qua bước nháp; không đồng nghĩa đã hoàn tất mọi biểu.</p></div><div class="card"><h2>Theo lĩnh vực</h2>'+S.model.data.LINHVUC.reduce(function(a,x){if(!a.includes(x.field))a.push(x.field);return a;},[]).map(function(field){var ids=S.model.data.LINHVUC.filter(function(x){return x.field===field;}).map(function(x){return x.task;}),works=S.model.data.A2.filter(function(x){return ids.includes(x.task);}),requests=S.model.requests.filter(function(r){return works.some(function(w){return w.id===r.work;});});return '<div class="metric-line"><span>'+e(field)+'</span><b>'+requests.filter(function(x){return x.status==='Đã duyệt';}).length+' duyệt / '+requests.length+' bản</b></div>';}).join('')+'</div></div>'+
+    '<div class="card">'+table(['Cá nhân','Phân công','Đã nhập/gửi','Đã duyệt biểu khác','Nháp'],people.map(function(p){return [e(p.name)+'<br><small>'+e(p.user)+'</small>',p.positions.map(function(x){return '<span class="tag">'+e(x)+'</span>';}).join(' '),n(p.submitted),n(p.approved),n(p.drafts)];}))+'</div>';
+}
+function reports(){
+  var r=S.report;
+  $('page').innerHTML=title('Tổng hợp','Báo cáo & chất lượng dữ liệu','Nguồn tham chiếu và số cá nhân đã kê khai được hiển thị riêng.',btn('exportReport','Xuất CSV')+' '+btn('print','In báo cáo'))+
+    '<div class="notice warning">Số người quy đổi theo PP2 là tham khảo. Cần đối chiếu phương pháp, căn cứ thời gian và thẩm quyền phê duyệt. Tổng giờ kê khai không được cộng thêm vào tổng giờ nguồn.</div>'+
+    '<div class="card"><h2>Khối lượng theo vị trí</h2>'+table(['Vị trí / phương pháp','Giờ B1 nguồn (tính lại)','Giờ chuẩn C1','Kê khai đã duyệt theo kỳ'],r.positions.map(function(p){return ['<b>'+e(p.name)+'</b><br><small>'+e(p.id)+' · '+e(p.method)+'</small>',n(p.sourceB1Hours)+(p.sourceMissing?'<br><small>Thiếu số liệu: '+p.sourceMissing+' dòng</small>':''),n(p.hoursPerPerson),p.declaredByPeriod.length?p.declaredByPeriod.map(function(x){return '<div>'+e(x.period)+': <b>'+n(x.hours)+' giờ</b><br><small>'+x.people+' người'+(x.pp2Reference!==null?' · '+n(x.pp2Reference)+' người quy đổi PP2':'')+'</small></div>';}).join(''):'<small>Chưa có kê khai B1 được duyệt</small>'];}))+'</div>'+
+    '<div class="card"><h2>Tác động B2 đã duyệt</h2>'+table(['Công việc / kỳ','Công đoạn / phạm vi','Giờ giảm','Giờ việc mới','Ròng (tăng − giảm)'],(r.effects||[]).map(function(x){return [e(x.work)+'<br><small>'+e(x.period)+'</small>',e(x.stage)+' · '+e(x.product)+'<br><small>'+e(x.coverage)+'</small>',n(x.reduced),n(x.newHours),n(x.net)];}))+'</div>'+
+    '<div class="card"><h2>Tổng giờ cá nhân theo kỳ</h2><p class="subtle">Tổng hợp các vị trí chính và kiêm nhiệm theo mã cá nhân; mỗi công việc/kỳ lấy bản duyệt gần nhất.</p>'+table(['Cá nhân','Kỳ','Tổng giờ','Số vị trí'],r.personalTotals.map(function(x){return [e(x.user),e(x.period),n(x.hours),n(x.positions.length)];}))+'</div>'+
+    '<div class="card"><h2>Đối chiếu các biểu</h2><p class="subtle">Giá trị từ nguồn và các điều chỉnh tổng hợp đã duyệt. Các số liệu lưu sẵn cần được đối chiếu với phép tính và căn cứ.</p><select id="reportSourceTable" aria-label="Chọn biểu đối chiếu">'+options(['C1','C2','C3','D1','D2','DUBAO','DM','B2CT','B2'],'C3')+'</select><div id="reportSourceRows" style="margin-top:15px"></div></div>'+
+    '<div class="card"><div class="row"><h2>Điểm cần rà soát · '+r.issues.length+'</h2>'+btn('exportIssues','Xuất danh sách')+'</div><p class="subtle">Công việc không có B1 được phân biệt theo phương pháp của vị trí, không mặc định toàn bộ chênh lệch A2–B1 là lỗi.</p>'+table(['Mã kiểm tra','Vị trí / công việc','Nội dung','Đầu mối'],r.issues.map(function(x){return [e(x.code),'<small>'+e(x.position)+'<br>'+e(x.work)+'</small>',e(x.message),e(x.assignedTo||'Chuyên viên tổng hợp')];}))+'</div>';
+}
+function renderSourceTable(key){var rows=S.model.data[key]||[],head=rows.length?Object.keys(rows[0].raw):[];$('reportSourceRows').innerHTML=table(head,rows.map(function(x){return head.map(function(h){return e(x.raw[h]);});}));}
+function admin(){
+  var m=S.model;
+  $('page').innerHTML=title('Quản trị','Quản trị hệ thống','Quản lý tài khoản, đồng bộ, sao lưu và khóa kỳ.')+
+    '<div class="two"><div class="card"><h2>Đồng bộ dữ liệu</h2><p class="subtle">Nguồn → dữ liệu vận hành. Các bản kê khai và nội dung được duyệt được giữ riêng.</p><div class="metric-line"><span>Lần gần nhất</span><b>'+e(m.lastSync||'Chưa đồng bộ')+'</b></div><div class="actions">'+btn('syncPreview','Kiểm tra & đồng bộ','','primary')+'</div><div id="syncPlan"></div></div>'+
+    '<div class="card"><h2>Sao lưu & khôi phục</h2><p class="subtle">Khôi phục tạo bản vận hành mới. File nguồn và bản vận hành trước đó được giữ lại.</p>'+btn('backup','Tạo bản sao lưu')+'<label>Bản sao lưu</label><select id="backupChoice">'+options(m.backups.slice().reverse().map(function(x){return {id:x.id,name:x.at+' · '+x.id.slice(0,8)};}),'','id','name','Chọn bản sao lưu')+'</select><div class="actions">'+btn('confirmRestore','Khôi phục bản đã chọn','','danger')+'</div></div></div>'+
+    '<div class="card"><div class="notice"><b>Kiểm tra dữ liệu công việc:</b> công việc mới/chỉnh sửa tự ghi vào <code>APP_CONG_VIEC</code>. '+(m.appDataUrl?'<a target="_blank" rel="noopener" href="'+e(m.appDataUrl)+'">Mở Google Sheets vận hành</a>':'')+' Không cần duyệt; quản trị kiểm tra trực tiếp trên sheet.</div></div>'+
+    '<div class="card"><div class="row"><h2>Tài khoản & phân công</h2><small>Danh mục C1: '+positionCatalog_().length+' VTVL</small></div>'+(m.positionCatalogError?'<div class="notice warning">Không đọc được danh mục VTVL: '+e(m.positionCatalogError)+'</div>':'')+'<div class="actions">'+btn('newAccount','+ Tạo tài khoản','','primary')+btn('importAccounts','⇪ Nhập danh sách tài khoản (Excel)')+btn('refreshPositions','↻ Tải lại danh sách VTVL')+'</div>'+table(['Tài khoản','Vai trò','Vị trí chính / kiêm nhiệm','Trạng thái',''],m.accounts.map(function(u){return ['<b>'+e(u.name)+'</b><br><small>'+e(u.id)+'</small>',u.roles.map(function(x){return e(roleNames[x]);}).join('<br>'),(u.positions.length?u.positions.map(function(x){return '<small>'+e(catName_(x))+(x===u.primary?' · Chính':' · Kiêm nhiệm')+'</small>';}).join('<br>'):'<small>Chờ cá nhân tự chọn VTVL</small>')+(u.selfSelect?'<br><span class="tag amber">Tự chọn VTVL</span>':'')+((u.fields||[]).length?'<br><small>Lĩnh vực: '+e(u.fields.join(', '))+'</small>':''),pill(u.active?'Hoạt động':'Đã khóa'),btn('editAccount','Sửa','data-id="'+e(u.id)+'"')+(u.roles.includes('ADMIN')?'':' '+btn('resetAccount','Đổi mật khẩu','data-id="'+e(u.id)+'"')+' '+btn('deleteAccount','Xóa','data-id="'+e(u.id)+'"','danger'))];}))+'</div>'+
+    '<div class="two"><div class="card"><h2>Khóa dữ liệu theo kỳ</h2><label>Kỳ dữ liệu</label><input id="periodToLock" value="'+e((S.report&&S.report.periods[0])||new Date().getFullYear())+'"><label>Lý do</label><input id="periodLockReason"><div class="actions">'+btn('lockPeriod','Khóa kỳ')+btn('unlockPeriod','Mở lại kỳ')+'</div>'+m.periodLocks.map(function(x){return '<div class="metric-line"><span>'+e(x.period)+'</span>'+pill(x.locked?'Đã khóa':'Đang mở')+'</div>';}).join('')+'</div><div class="card"><h2>Gmail quản trị</h2><p class="subtle">Đăng nhập bằng Google, tự đăng nhập khi mở App bằng Gmail được cấp. Không có mật khẩu quản trị trong App.</p><div id="adminGmailList" class="subtle"></div><h3 style="margin-top:25px">Kiểm tra liên kết</h3><p class="subtle">Đối chiếu mã giữa các biểu nguồn, APP_CONG_VIEC và tài khoản.</p>'+btn('linkCheck','Kiểm tra liên kết','','primary')+' '+btn('rowLimitReport','Kiểm tra 600 hàng')+' '+btn('exportWorks','Xuất công việc CSV')+'<h3 style="margin-top:25px">Nhật ký có lưu phiên bản</h3><p class="subtle">Tra cứu lần kê khai, xét duyệt và thay đổi tài khoản. Nội dung xác thực được ẩn.</p>'+btn('history','Xem nhật ký')+'</div></div>';
+  adminGmailInfo_();
+}
+function trust_(v){try{if(v===undefined)return JSON.parse(localStorage.getItem('vtvlAdminTrust')||'null');if(v)localStorage.setItem('vtvlAdminTrust',JSON.stringify(v));else localStorage.removeItem('vtvlAdminTrust');}catch(ignored){}return null;}
+function deviceLabel_(){var ua=navigator.userAgent,b=/Edg\//.test(ua)?'Edge':/Chrome\//.test(ua)?'Chrome':/Firefox\//.test(ua)?'Firefox':/Safari\//.test(ua)?'Safari':'Trình duyệt',o=/Android/.test(ua)?'Android':/iPhone|iPad/.test(ua)?'iOS':/Windows/.test(ua)?'Windows':/Mac OS/.test(ua)?'macOS':'Máy';return b+' · '+o+' · '+new Date().toLocaleDateString('vi-VN');}
+async function trustedDeviceLogin_(){
+  var tr=trust_();if(!tr||!tr.token)return false;
+  var r=null;try{r=await rpc('deviceLogin',{deviceToken:tr.token,withBoot:true});}catch(err){return false;}
+  if(r&&r.status==='OK'){await adminLoginResponse_(r);return true;}
+  trust_(false);toggleLogin_('admin');var nt=$('autoLoginNote');nt.innerHTML='Máy này cần xác nhận Gmail lại (thiết bị đã bị thu hồi hoặc hết hạn).';nt.classList.remove('hidden');return false;
+}
+function adminGmailInfo_(){if(!has('ADMIN')||!$('adminGmailList'))return;rpc('adminInfo').then(function(r){var box=$('adminGmailList');if(!box)return;var me=trust_();
+  box.innerHTML='Gmail được cấp: <b>'+r.emails.map(e).join(', ')+'</b><h3 style="margin-top:18px">Thiết bị đã xác nhận Gmail</h3>'+(r.devices&&r.devices.length?r.devices.map(function(d){return '<div class="metric-line"><span>'+e(d.label)+(me&&me.id===d.id?' · <b>máy này</b>':'')+'<br><small>'+e(d.email)+' · từ '+e(d.createdAt)+' · hết hạn '+e(d.expiresAt)+'</small></span>'+btn('revokeDevice','Thu hồi','data-id="'+e(d.id)+'"')+'</div>';}).join(''):'<small>Chưa có thiết bị nào được ghi nhớ.</small>');
+}).catch(function(){});}
+function catName_(id){var c=positionCatalog_().find(function(p){return p.id===id;})||(S.model.data.C1||[]).find(function(p){return p.id===id;});return c?c.name:id;}
+function allFields_(){var seen={},out=[];(S.model.data.LINHVUC||[]).slice().sort(function(a,b){return (a.order||0)-(b.order||0);}).forEach(function(x){if(x.field&&!seen[x.field]){seen[x.field]=1;out.push(x.field);}});return out;}
+function importDialog_(){
+  S.importRows=null;
+  modal('Nhập danh sách tài khoản','<p>Chọn file Excel (.xlsx) hoặc CSV. <b>Bắt buộc:</b> ID và pass (mật khẩu, tối đa 6 ký tự). <b>Tùy chọn:</b> Họ và tên, Tên vị trí việc làm. <b>Để trống VTVL:</b> tài khoản con tự chọn sau khi đăng nhập.</p>'+
+    '<input type="file" id="importFile" accept=".xlsx,.xls,.csv">'+
+    '<p class="subtle" style="margin-top:14px">Hoặc mở file Excel, bôi đen cả bảng (kể cả dòng tiêu đề), sao chép rồi dán vào ô dưới:</p><textarea id="importPaste" rows="6" placeholder="Dán bảng từ Excel vào đây…"></textarea>'+
+    '<div id="importResult"></div>',btn('importPreview','Kiểm tra danh sách','','primary')+btn('close','Đóng'));
+}
+function loadXlsx_(){return new Promise(function(res,rej){if(window.XLSX)return res(window.XLSX);var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';s.onload=function(){res(window.XLSX);};s.onerror=function(){rej(Error('Không tải được bộ đọc Excel. Hãy dùng cách dán bảng từ Excel.'));};document.head.appendChild(s);});}
+async function readImportTable_(){
+  var f=$('importFile')&&$('importFile').files[0];
+  if(f){
+    if(/\.csv$/i.test(f.name)){return parseDelimited_(await f.text());}
+    var X=await loadXlsx_(),wb=X.read(await f.arrayBuffer(),{type:'array'});
+    return X.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{header:1,raw:false,defval:''});
+  }
+  var p=($('importPaste').value||'').trim();if(!p)throw Error('Chọn file hoặc dán bảng danh sách.');
+  return p.split(/\r?\n/).map(function(l){return l.split('\t');});
+}
+/** Đọc CSV/TSV (bao gồm dấu phẩy, dấu chấm phẩy và xuống dòng trong ô được đặt trong dấu nháy). */
+function parseDelimited_(raw){
+  var s=String(raw||'').replace(/^\uFEFF/,''),first=s.split(/\r?\n/,1)[0],sep='\t';
+  if(first.indexOf('\t')<0){sep=(first.match(/;/g)||[]).length>(first.match(/,/g)||[]).length?';':',';}
+  var rows=[],row=[],cell='',quoted=false;
+  for(var i=0;i<s.length;i++){
+    var c=s[i];
+    if(c==='"'){if(quoted&&s[i+1]==='"'){cell+='"';i++;}else quoted=!quoted;}
+    else if(c===sep&&!quoted){row.push(cell);cell='';}
+    else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&s[i+1]==='\n')i++;row.push(cell);rows.push(row);row=[];cell='';}
+    else cell+=c;
+  }
+  if(cell||row.length){row.push(cell);rows.push(row);}
+  return rows;
+}
+function parseAccountTable_(aoa){
+  var norm=function(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'d').toLowerCase().trim();};
+  for(var h=0;h<Math.min(10,aoa.length);h++){
+    var row=(aoa[h]||[]).map(norm),ci=-1,cp=-1,cv=-1,cn=-1;
+    row.forEach(function(c,i){
+      if(ci<0&&(c==='id'||c==='id dang nhap'||c==='tai khoan'||c==='ten dang nhap'))ci=i;
+      else if(cp<0&&(c.indexOf('pass')>=0||c.indexOf('mat khau')>=0))cp=i;
+      else if(cv<0&&(c.indexOf('vi tri')>=0||c==='vtvl'))cv=i;
+      else if(cn<0&&c.indexOf('ho')===0&&c.indexOf('ten')>=0)cn=i;});
+    if(ci>=0&&cp>=0){
+      var out=[];for(var r=h+1;r<aoa.length;r++){var x=aoa[r]||[],id=String(x[ci]||'').trim(),pw=String(x[cp]||'').trim();if(!id&&!pw)continue;
+        out.push({line:r+1,id:id,password:pw,position:cv>=0?String(x[cv]||'').trim():'',name:cn>=0?String(x[cn]||'').trim():''});}
+      if(!out.length)throw Error('Danh sách không có dòng tài khoản nào.');return out;
+    }
+  }
+  throw Error('Không thấy dòng tiêu đề có cột “ID” và “pass” (hoặc “Mật khẩu”).');
+}
+function importTable_(r){
+  var tag=function(s){return '<span class="tag '+(s==='LỖI'?'red':s==='CẬP NHẬT'?'amber':'green')+'">'+e(s)+'</span>';};
+  return '<p style="margin-top:16px"><b>'+n(r.summary.create)+'</b> tạo mới · <b>'+n(r.summary.update)+'</b> cập nhật · <b>'+n(r.summary.errors)+'</b> lỗi (dòng lỗi sẽ bỏ qua)</p>'+
+    table(['Dòng','ID','Họ tên','Vị trí việc làm','Kết quả'],r.rows.map(function(x){return [String(x.line),'<code>'+e(x.id)+'</code>',e(x.name),e(x.positionName||'—'),tag(x.status)+(x.error?'<br><small style="color:var(--red)">'+e(x.error)+'</small>':'')+(x.notes.length?'<br><small>'+x.notes.map(e).join('<br>')+'</small>':'')];}));
+}
+async function importPreview_(){
+  S.importRows=parseAccountTable_(await readImportTable_());
+  var r=await rpc('importAccounts',{rows:S.importRows,preview:true});
+  $('importResult').innerHTML=importTable_(r);
+  var ok=r.summary.create+r.summary.update;
+  $('modalFooter').innerHTML=(ok?btn('importApply','Tạo/cập nhật '+ok+' tài khoản','','primary'):'')+btn('importPreview','Kiểm tra lại')+btn('close','Đóng');
+}
+async function importApply_(){
+  if(!S.importRows)throw Error('Hãy bấm Kiểm tra danh sách trước.');
+  var r=await rpc('importAccounts',{rows:S.importRows,preview:false});S.importRows=null;
+  await reload();
+  modal('Đã nhập danh sách tài khoản',importTable_(r)+'<p class="subtle">Tài khoản đăng nhập bằng ID và mật khẩu trong danh sách. Nên nhắc mọi người đổi mật khẩu sau lần đăng nhập đầu.</p>',btn('close','Đóng'));
+}
+function accountForm(id){
+  var u=S.model.accounts.find(function(x){return x.id===id;})||{roles:['CANHAN'],positions:[],active:true,primary:''};
+  S.accountEditing=u;
+  var catalog=positionCatalog_();
+  var roles=Object.keys(roleNames).map(function(k){return '<label class="check"><input name="roles" type="checkbox" value="'+k+'" '+(u.roles.includes(k)?'checked':'')+'>'+e(roleNames[k])+'</label>';}).join('');
+  var checklist=positionCheckItems_(catalog,u.positions);
+  var missing='<div class="notice warning">'+
+    (S.model.positionCatalogError?'Không đọc được sheet C1: '+e(S.model.positionCatalogError):'Chưa tải được danh sách VTVL.')+
+    ' Bấm “Tải lại danh sách VTVL”. Dữ liệu cấp quyền đọc trực tiếp từ sheet <b>6. C1_VTVL</b>, không cần đồng bộ toàn bộ hồ sơ.</div>';
+  var isAdminAcc=(u.roles||[]).includes('ADMIN');
+  var isNew=!id;
+  var pwField=isAdminAcc?'<p class="subtle">Tài khoản quản trị đăng nhập bằng Gmail, không có mật khẩu.</p>':
+    '<div><label for="accPassword">Mật khẩu đăng nhập '+(id?'(để trống nếu giữ mật khẩu hiện tại)':'*')+'</label><div class="row" style="gap:9px"><input id="accPassword" name="password" type="text" maxlength="6" autocomplete="new-password" spellcheck="false" placeholder="'+(id?'Nhập để đổi mật khẩu':'Tối đa 6 ký tự')+'" '+(id?'':'required')+'>'+btn('randomPw','Tạo ngẫu nhiên','type="button"')+'</div><small>Quản trị viên đặt mật khẩu và giao trực tiếp cho cá nhân.</small></div>';
+  var body='<form id="accountForm"><div class="grid2">'+input('id','ID đăng nhập',u.id,'',id?'':'2–40 ký tự: chữ không dấu, số, . - _ (ví dụ: nguyenvana)')+input('name','Họ tên',u.name)+'</div>'+pwField+
+    '<label>Vai trò được giao</label>'+roles+
+    '<div class="notice" style="margin-top:16px"><b>Không cần chọn vị trí việc làm.</b> Tài khoản cá nhân đăng nhập bằng ID và mật khẩu sẽ tự chọn VTVL từ danh mục C1, chọn vị trí chính/kiêm nhiệm và lưu trực tiếp.</div>'+
+    '<details '+(isNew?'':'open')+' style="margin-top:14px"><summary>Phân công VTVL thủ công (tùy chọn, không bắt buộc)</summary>'+
+    '<div style="margin-top:16px"><div class="row"><label for="positionSearch">VTVL được quản trị phân công trước (nếu cần)</label>'+btn('refreshPositions','↻ Tải lại danh sách VTVL','type="button"')+'</div>'+
+    '<p id="positionStatus" class="subtle" aria-live="polite"></p>'+
+    '<input id="positionSearch" placeholder="Tìm nhanh VTVL theo mã hoặc tên…">'+
+    (!catalog.length?missing:'')+
+    '<div class="position-checklist" id="positionChecklist">'+checklist+'</div></div>'+
+    '<div><label for="primaryPosition">Vị trí chính</label><select id="primaryPosition" name="primary"></select><small>Tích chọn một hoặc nhiều VTVL. Không cần dùng Ctrl; mỗi tài khoản có một vị trí chính.</small></div>'+
+    (allFields_().length?'<div style="margin-top:16px"><label>Lĩnh vực phụ trách <small>(chỉ áp dụng khi tài khoản có VTVL Phó Giám đốc)</small></label><div class="field-chips">'+allFields_().map(function(f){return '<label class="check"><input type="checkbox" name="fields" value="'+e(f)+'" '+((u.fields||[]).includes(f)?'checked':'')+'>'+e(f)+'</label>';}).join('')+'</div></div>':'')+
+    (isAdminAcc?'':'<label class="check"><input type="checkbox" name="selfSelect" '+((isNew||u.selfSelect||!u.positions.length)?'checked':'')+'>Cho phép tài khoản <b>tự chọn / đổi vị trí việc làm</b> khi đăng nhập</label>')+
+    '</details>'+
+    '<label class="check"><input type="checkbox" name="active" '+(u.active?'checked':'')+'>Tài khoản hoạt động</label></form>';
+  modal(id?'Sửa tài khoản':'Tạo tài khoản con',body,btn('saveAccount','Lưu tài khoản','','primary'));
+  if(id)$('accountForm').elements.id.readOnly=true;
+  refreshAccountPrimary_(u.primary);
+}
+function refreshAccountPrimary_(value){
+  var form=$('accountForm');if(!form)return;
+  var selected=Array.from(form.querySelectorAll('input[name="positions"]:checked')).map(function(x){return x.value;});
+  var select=$('primaryPosition'),previous=value!==undefined?value:select.value;
+  select.innerHTML=options(positionCatalog_().filter(function(x){return selected.includes(x.id);}),
+    selected.includes(previous)?previous:selected[0]||'','id','name',selected.length?'':'Chưa tích chọn VTVL');
+  if(selected.length&&!select.value)select.value=selected[0];
+  updatePositionCount_();
+}
+async function refreshPositions_(){
+  var form=$('accountForm');
+  var selected=form?Array.from(form.querySelectorAll('input[name="positions"]:checked')).map(function(x){return x.value;}):[];
+  var primary=form&&$('primaryPosition')?$('primaryPosition').value:'';
+  var search=form&&$('positionSearch')?$('positionSearch').value:'';
+  var result=await rpc('listPositions');
+  S.model.positionCatalog=result.positions;
+  S.model.positionCatalogError='';
+  if(form){
+    $('positionChecklist').innerHTML=positionCheckItems_(result.positions,selected);
+    $('positionSearch').value=search;
+    var alert= form.querySelector('.notice.warning');if(alert)alert.remove();
+    refreshAccountPrimary_(primary);
+    filterPositionChecks_();
+  }else if(S.page==='admin')admin();
+  msg('Đã tải '+result.count+' vị trí từ sheet '+result.source+'.');
+}
+async function saveAccount(){
+  var f=$('accountForm'),fd=new FormData(f),u=S.accountEditing;
+  var pwv=String(fd.get('password')||'');
+  if(!u.version&&!fd.getAll('roles').includes('ADMIN')&&!pwv)throw Error('Nhập mật khẩu cho tài khoản mới (hoặc bấm “Tạo ngẫu nhiên”).');
+  var r=await rpc('saveAccount',{id:String(fd.get('id')||'').trim().toLowerCase(),name:fd.get('name'),password:pwv,roles:fd.getAll('roles'),positions:fd.getAll('positions'),primary:fd.get('primary'),fields:fd.getAll('fields'),selfSelect:fd.has('selfSelect'),active:fd.has('active'),version:u.version});
+  $('dialog').close();if(r.user.id===S.model.user.id){sessionStorage.removeItem('vtvlToken');S.token='';$('shell').classList.add('hidden');$('login').classList.remove('hidden');msg('Đã lưu tài khoản của bạn. Vui lòng đăng nhập lại.');return;}await reload();if(r.password)modal(r.created?'Đã tạo tài khoản':'Đã đổi mật khẩu','<p>ID đăng nhập: <code style="font-size:19px">'+e(r.user.id)+'</code></p><p>Mật khẩu: <code style="font-size:21px">'+e(r.password)+'</code></p><p class="subtle">Giao trực tiếp cho đúng cá nhân. Đăng nhập chỉ cần ID và mật khẩu này.</p>',btn('close','Đã ghi nhận'));else msg('Đã lưu tài khoản. Các phiên cũ của tài khoản đã hết hiệu lực.');
+}
+function csv(name,rows){
+  var safe=function(v){v=String(v===undefined||v===null?'':v);if(/^[\s=+\-@]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"';};
+  var b=new Blob(['\ufeff'+rows.map(function(r){return r.map(safe).join(',');}).join('\r\n')],{type:'text/csv;charset=utf-8'}),a=document.createElement('a'),url=URL.createObjectURL(b);a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},1000);
+}
+async function syncPreview(){
+  var r=await rpc('sync',{preview:true});S.plan=r;
+  $('syncPlan').innerHTML='<div style="margin-top:18px">'+table(['Biểu','Nguồn','Mới','Đổi','Không thấy'],Object.keys(r.changes).map(function(k){var v=r.changes[k];return [e(k),n(v.source),n(v.new),n(v.changed),n(v.missing.length)];}))+(r.warnings.length?'<div class="notice warning">'+r.warnings.map(e).join('<br>')+'</div>':'')+(r.linkErrors?'<div class="notice warning">Liên kết: '+n(r.linkErrors)+' lỗi, '+n(r.linkWarnings)+' cảnh báo. '+r.linkIssues.slice(0,5).map(function(x){return e(x.table+' '+x.id+': '+x.message);}).join('<br>')+' '+btn('linkCheck','Xem đủ')+'</div>':'')+btn('syncApply',r.needsConfirmation?'Giữ mã cũ và đồng bộ dữ liệu đọc được':'Thực hiện đồng bộ','','primary')+'</div>';
+}
+async function viewHistory(offset){
+  var h=await rpc('history',{offset:offset||0});S.historyOffset=h.next;
+  modal('Nhật ký hệ thống',table(['Thời điểm','Người thực hiện','Biểu / đối tượng','Nội dung'],h.rows.map(function(x){return [e(x.at),e(x.actor),e(x.table)+'<br><small>'+e(x.id)+'</small>','<details><summary>Xem phiên bản</summary><pre style="white-space:pre-wrap;max-width:480px;font-size:11px">'+e(JSON.stringify(x.detail,null,2))+'</pre></details>'];}))+'<p class="subtle">Tổng '+h.total+' lần ghi nhận.</p>',(h.next!==null?btn('moreHistory','Trang tiếp →'):'')+btn('close','Đóng'));
+}
+function toggleLogin_(mode){
+  $('childLoginBox').classList.toggle('hidden',mode!=='child');
+  $('adminLoginBox').classList.toggle('hidden',mode!=='admin');
+}
+function adminDevice_(on){try{if(on===undefined)return localStorage.getItem('vtvlAdminDevice')==='1';if(on)localStorage.setItem('vtvlAdminDevice','1');else localStorage.removeItem('vtvlAdminDevice');}catch(ignored){}return false;}
+async function adminLoginResponse_(r){
+  S.token=r.token;sessionStorage.setItem('vtvlToken',r.token);sessionStorage.removeItem('vtvlNoAuto');adminDevice_(true);S.page='admin';
+  S.filters={account:'',position:'',field:'',task:'',q:'',page:0};if(!useBoot_(r))await reload();
+}
+window.vtvlGoogleResponse=async function(response){
+  try{if(!response||!response.credential)throw Error('Google không trả mã xác thực.');
+    await adminLoginResponse_(await rpc('googleAdminLogin',{idToken:response.credential,withBoot:true}));
+  }catch(err){msg(err.message,true);}
+};
+function renderGoogleButton_(clientId,attempt){
+  if(!clientId){$('googleLoginHint').textContent='Chưa cấu hình GOOGLE_CLIENT_ID. Chủ dự án thiết lập Client ID trong Script Properties hoặc dùng xác minh Gmail phiên hiện tại.';return;}
+  if(window.google&&google.accounts&&google.accounts.id){
+    google.accounts.id.initialize({client_id:clientId,callback:window.vtvlGoogleResponse,ux_mode:'popup',auto_select:true,cancel_on_tap_outside:true});
+    google.accounts.id.renderButton($('googleButton'),{type:'standard',theme:'outline',size:'large',text:'signin_with',width:290});
+    if(S.gisAuto&&!S.token&&adminDevice_()&&sessionStorage.getItem('vtvlNoAuto')!=='1'){S.gisAuto=false;try{google.accounts.id.prompt();}catch(ignored){}}
+    return;
+  }
+  if((attempt||0)<30)setTimeout(function(){renderGoogleButton_(clientId,(attempt||0)+1);},200);
+  else $('googleLoginHint').textContent='Không tải được Google Identity Services trong trình duyệt/iframe hiện tại. Hãy kiểm tra cấu hình OAuth, hoặc dùng nút Gmail đang đăng nhập.';
+}
+async function action(a,b){
+  if(a==='close'){$('dialog').close();return;}
+  if(a==='showChildLogin'||a==='showAdminLogin'){toggleLogin_(a==='showAdminLogin'?'admin':'child');return;}
+  if(a==='googleNativeLogin'){await adminLoginResponse_(await rpc('googleSessionLogin',{withBoot:true}));return;}
+  if(a==='reload'){await reload();return;}
+  if(a==='reloadMyCatalog'){var x=await rpc('reloadMyCatalog');S.model.myCatalog=x.positions;S.model.myCatalogError='';S.model.myCatalogSource=x.source;renderShell();msg('Đã tải '+x.count+' vị trí việc làm từ C1.');return;}
+  if(a==='navigate'){await navigate_(b.dataset.page);return;}
+  if(a==='logout'){if(!window.LOCAL_PREVIEW){try{await rpc('logout');}catch(ignored){}}S.token='';sessionStorage.removeItem('vtvlToken');sessionStorage.setItem('vtvlNoAuto','1');try{if(window.google&&google.accounts&&google.accounts.id)google.accounts.id.disableAutoSelect();}catch(ignored){}S.model=null;S.report=null;S.detailed=false;S.page='lookup';S.filters={account:'',position:'',field:'',task:'',q:'',page:0};$('shell').classList.add('hidden');$('login').classList.remove('hidden');return;}
+  if(a==='detail'){detail(b.dataset.id);return;}
+  if(a==='openMainTask'||a==='toggleTask'){S.filters.task=S.filters.task===b.dataset.id?'':b.dataset.id;renderTaskFlow_();return;}
+  if(a==='toggleField'){S.openFields=S.openFields||{};var fo=!S.openFields[b.dataset.id];S.openFields[b.dataset.id]=fo;if(!fo&&S.filters.task&&fieldMap_().known[S.filters.task]===b.dataset.id)S.filters.task='';renderTaskFlow_();return;}
+  if(a==='moreTasks'){S.moreTasks=S.moreTasks||{};S.moreTasks[b.dataset.id]=true;renderTaskFlow_();return;}
+  if(a==='depTabMine'||a==='depTabStaff'){S.filters.dmode=a==='depTabStaff'?'staff':'mine';S.filters.task='';S.openFields={};S.moreTasks={};lookup();return;}
+  if(a==='saveMyFields'){var fs=Array.from(document.querySelectorAll('input[name="depField"]:checked')).map(function(x){return x.value;});await rpc('setMyFields',{fields:fs});S.filters.task='';S.openFields={};await reload();msg(fs.length?'Đã lưu '+fs.length+' lĩnh vực phụ trách.':'Đã bỏ chọn lĩnh vực phụ trách.');return;}
+  if(a==='deleteAccount'){var du=(S.model.accounts||[]).find(function(x){return x.id===b.dataset.id;})||{id:b.dataset.id,name:''};modal('Xóa tài khoản','<p>Xóa tài khoản <b>'+e(du.name)+'</b> (<code>'+e(du.id)+'</code>)?</p><p class="subtle">Tài khoản bị đăng xuất ngay và không đăng nhập lại được. Lịch sử kê khai vẫn được giữ trong nhật ký. ID này có thể dùng lại để tạo tài khoản mới.</p>',btn('doDeleteAccount','Xóa tài khoản','data-id="'+e(du.id)+'"','danger')+btn('close','Hủy'));return;}
+  if(a==='doDeleteAccount'){await rpc('deleteAccount',{id:b.dataset.id});$('dialog').close();await reload();msg('Đã xóa tài khoản '+b.dataset.id+'.');return;}
+  if(a==='importAccounts'){importDialog_();return;}
+  if(a==='importPreview'){await importPreview_();return;}
+  if(a==='importApply'){await importApply_();return;}
+  if(a==='backToTasks'){S.filters.task='';renderTaskFlow_();return;}
+  if(a==='editScopedWork'){var wk=S.model.data.A2.find(function(x){return x.id===b.dataset.id;});if(wk)openWorkProposal_(wk.id,wk.task,wk.position);return;}
+  if(a==='addScopedWork'){pickAddPosition_();return;}
+  if(a==='pickMyPositions'){modal('Vị trí việc làm của bạn',myPositionsCard_(false).replace('<div class="actions">'+btn('saveMyPositions','Lưu vị trí việc làm','','primary')+'</div>',''),btn('saveMyPositions','Lưu vị trí việc làm','','primary')+btn('close','Hủy'));refreshMyPrimary_();return;}
+  if(a==='saveMyPositions'){var mp=Array.from(document.querySelectorAll('input[name="myPos"]:checked')).map(function(x){return x.value;});if(!mp.length)throw Error('Hãy tích ít nhất một vị trí việc làm.');
+    await rpc('setMyPositions',{positions:mp,primary:$('myPrimary')?$('myPrimary').value:''});if($('dialog').open)$('dialog').close();S.filters.position='';S.filters.task='';await reload();msg('Đã lưu vị trí việc làm. Danh sách nhiệm vụ và công việc đã cập nhật.');return;}
+  if(a==='addFromDetail'){$('dialog').close();S.filters.task=b.dataset.id;pickAddPosition_();return;}
+  if(a==='addForPosition'){$('dialog').close();openWorkProposal_(null,S.filters.task,b.dataset.id);return;}
+  if(a==='newA2'){pickAddPosition_();return;}
+  if(a==='editA2'||a==='declareB1'){openForm(a==='editA2'?'A2':'B1',null,b.dataset.id);return;}
+  if(a==='newForm'){openForm(S.formType);return;}
+  if(a==='saveDraft'||a==='sendForm'){await saveForm(a==='sendForm'?'send':'draft');return;}
+  if(a==='requestDetail'||a==='reviewDetail'){requestDetail(b.dataset.id,a==='reviewDetail');return;}
+  if(a==='editRequest'){var r=S.model.requests.find(function(x){return x.id===b.dataset.id;});openForm(r.type,r);return;}
+  if(a==='reviewApprove'||a==='reviewReject'||a==='reviewReturn'){await submitReview(b.dataset.id,{reviewApprove:'approve',reviewReject:'reject',reviewReturn:'return'}[a]);return;}
+  if(a==='newAccount'||a==='editAccount'){accountForm(b.dataset.id);return;}
+  if(a==='refreshPositions'){await refreshPositions_();return;}
+  if(a==='saveAccount'){await saveAccount();return;}
+  if(a==='randomPw'){var cs='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',rnd=new Uint32Array(5),pr='';crypto.getRandomValues(rnd);rnd.forEach(function(v){pr+=cs[v%cs.length];});var pf=$('accPassword')||$('resetPwInput');if(pf){pf.value=pr;pf.focus();}return;}
+  if(a==='resetAccount'){modal('Đặt mật khẩu mới','<p>Tài khoản <code>'+e(b.dataset.id)+'</code></p><label for="resetPwInput">Mật khẩu mới (tối đa 6 ký tự)</label><div class="row" style="gap:9px"><input id="resetPwInput" type="text" maxlength="6" autocomplete="new-password" spellcheck="false">'+btn('randomPw','Tạo ngẫu nhiên','type="button"')+'</div>',btn('doResetAccount','Lưu mật khẩu','data-id="'+e(b.dataset.id)+'"','primary')+btn('close','Hủy'));$('resetPwInput').focus();return;}
+  if(a==='doResetAccount'){var np=$('resetPwInput').value;if(!np)throw Error('Nhập mật khẩu mới hoặc bấm “Tạo ngẫu nhiên”.');var pw=await rpc('resetPassword',{id:b.dataset.id,password:np});modal('Mật khẩu mới','<p>Tài khoản <code>'+e(pw.id)+'</code></p><p>Mật khẩu: <code style="font-size:21px">'+e(pw.password)+'</code></p><small>Các phiên đăng nhập cũ đã hết hiệu lực.</small>',btn('close','Đã ghi nhận'));return;}
+  if(a==='syncPreview'){await syncPreview();return;}
+  if(a==='linkCheck'){await linkCheck_();return;}
+  if(a==='sendAdminCode'){var em=$('otpEmail').value.trim();if(!em)throw Error('Nhập Gmail quản trị.');var sr=await rpc('sendAdminCode',{email:em});try{localStorage.setItem('vtvlAdminEmail',em);}catch(ig){}$('otpStep2').classList.remove('hidden');$('otpCode').focus();msg(sr.message);return;}
+  if(a==='verifyAdminCode'){var vr=await rpc('verifyAdminCode',{withBoot:true,email:$('otpEmail').value.trim(),code:$('otpCode').value.trim(),remember:$('otpRemember').checked,label:deviceLabel_()});if(vr.device)trust_(vr.device);$('otpCode').value='';$('otpStep2').classList.add('hidden');await adminLoginResponse_(vr);msg(vr.device?'Đã xác nhận Gmail. Máy này tự đăng nhập quản trị trong '+vr.device.days+' ngày.':'Đã đăng nhập quản trị.');return;}
+  if(a==='revokeDevice'){await rpc('revokeDevice',{id:b.dataset.id});var tr=trust_();if(tr&&tr.id===b.dataset.id)trust_(false);msg('Đã thu hồi thiết bị.');adminGmailInfo_();return;}
+  if(a==='rowLimitReport'){var rr=await rpc('rowLimitReport');modal('Kiểm tra giới hạn 600 hàng',
+      '<p>File vận hành có '+rr.sheets.length+' sheet; <b>'+rr.overLimit.length+'</b> sheet vượt '+rr.limit+' hàng vật lý.</p>'+
+      (rr.overLimit.length?table(['Sheet','Hàng có dữ liệu','Hàng vật lý'],rr.overLimit.map(function(x){return [e(x.sheet),n(x.rows),n(x.physicalRows)];})):'<div class="notice">Tất cả sheet vận hành nằm trong giới hạn 600 hàng.</div>')+
+      '<p class="subtle">'+e(rr.advice)+'</p>',btn('close','Đóng'));return;}
+  if(a==='exportWorks'){var dw=(S.model.directWorks||[]);csv('VTVL_Cong_viec_van_hanh.csv',
+      [['Mã công việc','Mã nhiệm vụ','Mã VTVL','Tên công việc','Sản phẩm','Đơn vị tính','Chất lượng','Số sản phẩm/năm','Phút/SP','Giờ','Người nhập','Ngày giờ','Loại thao tác','Căn cứ','Tên vị trí việc làm','Lý do / thông tin bổ sung','Sheet','Hàng']].concat(dw.map(function(w){return [w.id,w.task,w.position,w.name,w.product,w.unit,w.quality,w.quantity,w.minutes,w.hours,w.user,w.updatedAt,w.changeType,w.basis,w.positionName,w.reason,w.sheet,w.row];})));return;}
+  if(a==='exportLinks'){csv('VTVL_Kiem_tra_lien_ket.csv',[['Mức','Biểu','Mã','Nội dung']].concat((S.links&&S.links.issues||[]).map(function(x){return [x.level,x.table,x.id,x.message];})));return;}
+  if(a==='syncApply'){var sy=await rpc('sync',{confirmFingerprint:S.plan.fingerprint});if(sy.preview){msg('Nguồn đã thay đổi. Hãy kiểm tra lại kế hoạch đồng bộ.',true);S.plan=sy;return;}msg('Đã đồng bộ dữ liệu.');await reload();return;}
+  if(a==='backup'){await rpc('backup');msg('Đã tạo bản sao lưu.');await reload();return;}
+  if(a==='confirmRestore'){var id=$('backupChoice').value;if(!id)throw Error('Chọn bản sao lưu.');S.restoreId=id;modal('Khôi phục dữ liệu','<p>Ứng dụng tạo bản vận hành mới từ bản sao lưu đã chọn và đăng xuất các phiên hiện tại. Bản đang dùng được sao lưu trước khi chuyển.</p>',btn('restore','Khôi phục bản đã chọn','','danger')+btn('close','Đóng'));return;}
+  if(a==='restore'){await rpc('restore',{id:S.restoreId});sessionStorage.removeItem('vtvlToken');S.token='';$('dialog').close();$('shell').classList.add('hidden');$('login').classList.remove('hidden');msg('Đã khôi phục. Hãy đăng nhập lại.');return;}
+  if(a==='lockPeriod'||a==='unlockPeriod'){await rpc('lockPeriod',{period:$('periodToLock').value,reason:$('periodLockReason').value,locked:a==='lockPeriod'});msg('Đã cập nhật khóa kỳ.');await reload();return;}
+  if(a==='history'||a==='moreHistory'){await viewHistory(a==='history'?0:S.historyOffset);return;}
+  if(a==='changePassword'){modal('Đổi mật khẩu','<form id="pwForm">'+input('oldPassword','Mật khẩu hiện tại','')+input('newPassword','Mật khẩu mới (tối đa 6 ký tự)','')+'</form>',btn('savePassword','Lưu mật khẩu','','primary'));$('pwForm').querySelectorAll('input').forEach(function(i){i.type='password';i.maxLength=6;});return;}
+  if(a==='savePassword'){await rpc('changePassword',Object.fromEntries(new FormData($('pwForm'))));sessionStorage.removeItem('vtvlToken');S.token='';$('dialog').close();$('shell').classList.add('hidden');$('login').classList.remove('hidden');msg('Đã đổi mật khẩu. Vui lòng đăng nhập lại.');return;}
+  if(a==='print'){window.print();return;}
+  if(a==='exportIssues'){csv('VTVL_Diem_can_ra_soat.csv',[['Mã kiểm tra','Vị trí','Công việc','Nội dung']].concat(S.report.issues.map(function(x){return [x.code,x.position,x.work,x.message];})));return;}
+  if(a==='exportReport'){csv('VTVL_Bao_cao_khoi_luong.csv',[['Mã VTVL','Tên VTVL','Phương pháp','Giờ B1 nguồn','Kỳ kê khai','Giờ kê khai đã duyệt','Số cá nhân','Người quy đổi PP2 tham khảo']].concat(S.report.positions.flatMap(function(x){return x.declaredByPeriod.length?x.declaredByPeriod.map(function(p){return [x.id,x.name,x.method,x.sourceB1Hours,p.period,p.hours,p.people,p.pp2Reference];}):[[x.id,x.name,x.method,x.sourceB1Hours,'','','','']];})));return;}
+}
+document.addEventListener('click',async function(ev){
+  var b=ev.target.closest('button');if(!b)return;
+  try{if(b.dataset.nav){await navigate_(b.dataset.nav);}else if(b.dataset.type){S.formType=b.dataset.type;forms();}else if(b.dataset.action){b.disabled=true;try{await action(b.dataset.action,b);}finally{if(b.isConnected)b.disabled=false;}}}catch(err){msg(err.message,true);}
+});
+$('mobileNav').addEventListener('change',function(ev){navigate_(ev.target.value).catch(function(err){msg(err.message,true);});});
+document.addEventListener('change',function(ev){
+  var el=ev.target,f=S.filters;
+  if(el.id==='reportSourceTable'){renderSourceTable(el.value);return;}
+  if(el.id==='scopeAccount'){f.account=el.value;f.position='';f.task='';f.q='';lookup();return;}
+  if(el.id==='scopePosition'){f.position=el.value;f.task='';f.q='';lookup();return;}
+  if(el.name==='positions'&&el.closest('#accountForm')){refreshAccountPrimary_();return;}
+  if(['formPosition','formWork','summaryTable','summaryRow'].includes(el.id)){
+    var form=$('declaration'),edit=S.edit,p=form.elements.position.value;
+    var w=form.elements.work?form.elements.work.value:null,tk=form.elements.table?form.elements.table.value:null,ri=form.elements.rowId?form.elements.rowId.value:null;
+    // Identity is fixed for saved drafts; choose it before typing a new record.
+    if(edit.id){msg('Không đổi khóa của bản kê khai đã lưu. Tạo bản mới nếu cần thay đổi.',true);openForm(edit.type,edit.record);return;}
+    openForm(edit.type,null,el.id==='formPosition'?null:w,p,tk,el.id==='summaryTable'?null:ri);
+  }
+});
+document.addEventListener('input',function(ev){
+  if(ev.target.id==='myPosSearch'){var q=ev.target.value.toLowerCase();document.querySelectorAll('#myPosList label').forEach(function(l){l.classList.toggle('hidden',q&&l.dataset.name.indexOf(q)<0);});return;}
+  if(ev.target.name==='myPos'){refreshMyPrimary_();return;}
+  if(ev.target.id==='taskSearch'){S.filters.q=ev.target.value;var t=ev.target.selectionStart;renderTaskFlow_();var search=$('taskSearch');if(search){search.focus();search.setSelectionRange(t,t);}return;}
+  if(ev.target.id==='positionSearch'){
+    filterPositionChecks_();return;
+  }
+  if($('workCalculation')&&ev.target.closest('#declaration')){
+    var wf=$('declaration'),q=Number(wf.elements.quantity.value),m=Number(wf.elements.minutes.value);
+    $('workCalculation').textContent=wf.elements.quantity.value.trim()&&wf.elements.minutes.value.trim()?'Giờ tham khảo: '+n(q*m/60)+' giờ/năm. Chưa phải B1 đã kiểm chứng.':'Tên công việc và Sản phẩm là bắt buộc; các trường khác có thể để trống.';
+  }
+  if($('b1Calculation')&&ev.target.closest('#declaration')){var f=$('declaration'),q=Number(f.elements.quantity.value),m=Number(f.elements.minutes.value),a=Number(f.elements.additional.value);$('b1Calculation').textContent='Tổng giờ kê khai = '+n(q*m/60+a)+' giờ. Chưa phải xác nhận kiểm chứng.';}
+});
+document.addEventListener('keydown',function(ev){if(ev.key!=='Enter')return;var id=ev.target.id,t=id==='otpCode'?'verifyAdminCode':id==='otpEmail'?'sendAdminCode':'';if(!t)return;ev.preventDefault();var b=document.querySelector('#adminLoginBox button[data-action="'+t+'"]');if(b)b.click();});
+$('loginForm').addEventListener('submit',async function(ev){
+  ev.preventDefault();var b=this.querySelector('button');b.disabled=true;
+  try{var r=await rpc('login',{withBoot:true,id:$('loginId').value.trim().toLowerCase(),password:$('loginPassword').value});S.token=r.token;S.page='lookup';S.filters={account:'',position:'',field:'',task:'',q:'',page:0};sessionStorage.setItem('vtvlToken',r.token);$('loginPassword').value='';if(!useBoot_(r))await reload();}catch(err){msg(err.message,true);}finally{b.disabled=false;}
+});
+/** Tự đăng nhập Gmail quản trị khi mở App; người dùng khác vẫn thấy màn hình đăng nhập bình thường. */
+async function autoAdminLogin_(opt){
+  var r=opt.auto||null;if(!r){try{r=await rpc('autoAdmin');}catch(err){return;}}
+  if(r&&r.status==='OK'){await adminLoginResponse_(r);msg('Đã tự đăng nhập quản trị bằng '+r.email+'.');return;}
+  var note=$('autoLoginNote'),text='';
+  if(r.status==='NOT_ADMIN')text='Google đang nhận bạn là <b>'+e(r.email)+'</b> – Gmail này chưa được cấp quyền quản trị. Nếu trình duyệt đăng nhập nhiều tài khoản Google, App luôn dùng tài khoản mặc định; hãy mở App trong hồ sơ Chrome chỉ có Gmail quản trị.';
+  else if(r.status==='NO_EMAIL')text='Google không cho App biết Gmail đang mở. Kiểm tra triển khai Web App: <b>Bất kỳ ai có Tài khoản Google</b>. Gmail quản trị khác chủ dự án cần dùng nút <b>Đăng nhập với Google</b>'+(opt.googleClientId?'.':' (chủ dự án phải cấu hình GOOGLE_CLIENT_ID).');
+  else if(r.status==='ADMIN_INACTIVE')text='Tài khoản quản trị đang bị khóa hoặc chưa cài. Chủ dự án chạy <code>upgradeVTVL_GmailDirect_20261108</code> trong Apps Script.';
+  if(text&&(r.status!=='NOT_ADMIN'||adminDevice_())){note.innerHTML=text;note.classList.remove('hidden');if(adminDevice_())toggleLogin_('admin');}
+  if(opt.googleClientId&&adminDevice_()){S.gisAuto=true;renderGoogleButton_(opt.googleClientId,0);}
+}
+async function linkCheck_(){
+  var r=await rpc('linkCheck');S.links=r;
+  var rows=r.issues.slice(0,300).map(function(x){return ['<span class="tag '+(x.level==='LỖI'?'red':'amber')+'">'+e(x.level)+'</span>',e(x.table),'<small>'+e(x.id)+'</small>',e(x.message)];});
+  modal('Kiểm tra liên kết dữ liệu','<p>Thời điểm: '+e(r.checkedAt)+' · <b>'+n(r.errors)+'</b> lỗi · <b>'+n(r.warnings)+'</b> cảnh báo'+(r.totals&&r.totals.A2?' · A1 '+n(r.totals.A1)+', A2 '+n(r.totals.A2)+', B1 '+n(r.totals.B1)+', C1 '+n(r.totals.C1):'')+'</p>'+
+    (r.issues.length?table(['Mức','Biểu','Mã','Nội dung'],rows)+(r.issues.length>300?'<p class="subtle">Hiển thị 300 dòng đầu; xuất CSV để xem đủ.</p>':''):'<div class="notice">Không phát hiện lỗi liên kết giữa A0, A1, A2, B1, B2, C1, C2, C3, D1, D2, DU_BAO_5_NAM, APP_CONG_VIEC và tài khoản.</div>'),
+    (r.issues.length?btn('exportLinks','Xuất CSV'):'')+btn('close','Đóng'));
+}
+async function start(){
+  if(window.LOCAL_PREVIEW){S.model=window.LOCAL_PREVIEW.boot;S.report=window.LOCAL_PREVIEW.report;renderShell();return;}
+  try{
+    var opt=window.VTVL_START||await rpc('options');
+    $('loginNote').textContent=opt.installed?'Tài khoản con dùng mã/mật khẩu; quản trị dùng Gmail đã xác minh.':'Chưa cài đặt: chủ dự án cần chạy installVTVL trong Apps Script.';
+    renderGoogleButton_(opt.googleClientId||'',0);
+    if(S.token){try{await reload();if(has('ADMIN')&&S.page==='lookup'){S.page='admin';renderShell();}return;}catch(err){sessionStorage.removeItem('vtvlToken');S.token='';}}
+    try{var le=localStorage.getItem('vtvlAdminEmail');if(le)$('otpEmail').value=le;}catch(ig){}
+    if(opt.installed&&sessionStorage.getItem('vtvlNoAuto')!=='1'){
+      if(opt.auto&&opt.auto.status==='OK'){await adminLoginResponse_(opt.auto);return;}
+      if(await trustedDeviceLogin_())return;await autoAdminLogin_(opt);}
+  }catch(err){$('loginNote').textContent='Không kết nối được máy chủ: '+err.message+' · Hãy truy cập bản chính thức tại Apps Script.';}
+}
+start();
+</script></body></html>
