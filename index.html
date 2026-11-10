@@ -266,7 +266,13 @@ function lookup(){
   if(selects)body+='<div class="card"><div class="scope-bar">'+selects+'</div></div>';
   if(has('ADMIN')&&!S.model.lastSync)body+='<div class="notice warning">Chưa đồng bộ dữ liệu nên tài khoản con chưa thấy nhiệm vụ và công việc. Vào <b>Quản trị hệ thống → Đồng bộ dữ liệu</b> để đồng bộ lần đầu.</div>';
   if(!staff()&&!d.A1.length)body+='<div class="notice warning">Dữ liệu nhiệm vụ chưa được quản trị viên đồng bộ. Bạn vẫn có thể chọn VTVL nếu danh mục C1 đã sẵn sàng.</div>';
-  if(!staff()&&!scope.allowed.length)body+=(S.model.user.selfSelect&&(S.model.myCatalog||[]).length?myPositionsCard_(true):'<div class="notice warning">Chưa đọc được danh mục VTVL C1; vui lòng báo quản trị viên kiểm tra quyền đọc hoặc dữ liệu C1.</div>');
+  if(!staff()&&!scope.allowed.length){
+    if(S.model.user.selfSelect&&(S.model.myCatalog||[]).length){
+      body+=myPositionsCard_(true);
+    }else{
+      body+='<div class="notice warning"><b>Chưa tải được vị trí việc làm.</b><br>'+e(S.model.myCatalogError||'Máy chủ chưa trả về danh mục C1 hoặc tài khoản chưa được bật quyền tự chọn.')+'<div class="actions">'+btn('reloadMyCatalog','↻ Tải lại danh mục VTVL','','primary')+'</div></div>';
+    }
+  }
   if(S.model.deputy&&!scope.sub)body+=deputyPanel_();
   body+='<div id="taskFlow"></div>';
   $('page').innerHTML=body;
@@ -742,6 +748,7 @@ async function action(a,b){
   if(a==='showChildLogin'||a==='showAdminLogin'){toggleLogin_(a==='showAdminLogin'?'admin':'child');return;}
   if(a==='googleNativeLogin'){await adminLoginResponse_(await rpc('googleSessionLogin',{withBoot:true}));return;}
   if(a==='reload'){await reload();return;}
+  if(a==='reloadMyCatalog'){var x=await rpc('reloadMyCatalog');S.model.myCatalog=x.positions;S.model.myCatalogError='';S.model.myCatalogSource=x.source;renderShell();msg('Đã tải '+x.count+' vị trí việc làm từ C1.');return;}
   if(a==='navigate'){S.page=b.dataset.page;renderShell();return;}
   if(a==='logout'){if(!window.LOCAL_PREVIEW){try{await rpc('logout');}catch(ignored){}}S.token='';sessionStorage.removeItem('vtvlToken');sessionStorage.setItem('vtvlNoAuto','1');try{if(window.google&&google.accounts&&google.accounts.id)google.accounts.id.disableAutoSelect();}catch(ignored){}S.model=null;S.page='lookup';S.filters={account:'',position:'',field:'',task:'',q:'',page:0};$('shell').classList.add('hidden');$('login').classList.remove('hidden');return;}
   if(a==='detail'){detail(b.dataset.id);return;}
@@ -867,7 +874,7 @@ async function start(){
     if(opt.installed&&sessionStorage.getItem('vtvlNoAuto')!=='1'){
       if(opt.auto&&opt.auto.status==='OK'){await adminLoginResponse_(opt.auto);return;}
       if(await trustedDeviceLogin_())return;await autoAdminLogin_(opt);}
-  }catch(err){$('loginNote').textContent=err.message;}
+  }catch(err){$('loginNote').textContent='Không kết nối được máy chủ: '+err.message+' · Hãy truy cập bản chính thức tại Apps Script.';}
 }
 start();
 </script></body></html>
