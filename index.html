@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>APP VTVL • Phường An Hội Đông</title>
+  <style>
+  *{box-sizing:border-box}body{min-height:100vh;display:grid;place-items:center;margin:0;padding:20px;background:#f2f6fb;color:#183754;font:16px/1.6 system-ui,sans-serif}
+  main{max-width:540px;width:100%;background:white;padding:34px;border-radius:18px;border-top:5px solid #124d87;box-shadow:0 12px 45px #132b491c;text-align:center}
+  h1{font-size:27px;color:#9e2633}p{color:#53677d}a{display:inline-block;color:white;background:#124d87;text-decoration:none;font-weight:700;border-radius:9px;padding:14px 24px;margin:14px 0}small{display:block;color:#64788d;margin-top:12px}
+  </style>
+</head>
+<body>
+<main>
+  <h1>APP VỊ TRÍ VIỆC LÀM</h1>
+  <p>Trung tâm Cung ứng dịch vụ công – Phường An Hội Đông</p>
+  <p>Ứng dụng sử dụng máy chủ Google Apps Script để đăng nhập an toàn và tải danh mục 20 vị trí việc làm.</p>
+  <a href="https://script.google.com/macros/s/AKfycbxxvW8tlSiYw-mph9-9qdkbU0f71hTceuNic-mzWkvnSCOkIxruYHxz8jZBvtYo15Zg/exec" id="go">MỞ ỨNG DỤNG →</a>
+  <small>Bạn đang mở từ GitHub Pages. Chọn nút trên để tiếp tục. Địa chỉ đăng nhập chính thức thuộc miền <b>script.google.com</b>.</small>
+  <noscript><p>Cần bật JavaScript trong trình duyệt để sử dụng đầy đủ ứng dụng.</p></noscript>
+</main>
+<script>
+  // Điều hướng ở tab hiện tại để tránh CORS và tránh nhúng mật khẩu/token vào GitHub.
+  // Không đặt chế độ no-cors, không gửi thông tin đăng nhập qua JSONP.
+  window.setTimeout(function() {
+    if(document.visibilityState !== 'hidden')window.location.replace(document.getElementById('go').href);
+  }, 900);
+</script>
+</body></html>
